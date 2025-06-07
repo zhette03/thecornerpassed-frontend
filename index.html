@@ -2,34 +2,42 @@
 <html lang="en">
 <head>
   <script src="script.js" defer></script>
-    <link rel="icon" href="./thecornerpassed/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="utf-8" />
 </head>
 <body>
   <div id="maindiv">
     <div id="navdiv">
-      <!-- Logo column -->
-      <div id="logodiv">
-        <img id="logo" src="LOGOTCP1.png" alt="TCPLOGO">
+      <!-- Top row with 4 navigation columns -->
+      <div id="topnav">
+        <!-- Logo column -->
+        <div id="logodiv">
+          <img id="logo" src="LOGOTCP1.png" alt="TCPLOGO">
+        </div>
+
+        <!-- Collection options -->
+        <div id="colldiv">
+          <p>SS26</p>
+          <p>SS25</p>
+          <p>FW24</p>
+          <p>SNET</p>
+        </div>
+
+        <!-- Type options (dynamic) -->
+        <div id="typediv"></div>
+
+        <!-- Photographer options (dynamic) -->
+        <div id="photodiv"></div>
       </div>
+      
+      <!-- Bottom row - description -->
+      <div id="descriptiondiv">
+        <p id="descp">
 
-      <!-- Collection options -->
-      <div id="colldiv">
-        <p>SS26</p>
-        <p>SS25</p>
-        <p>FW24</p>
-        <p>SNET</p>
+        </p>
       </div>
-
-      <!-- Type options (dynamic) -->
-      <div id="typediv"></div>
-
-      <!-- Photographer options (dynamic) -->
-      <div id="photodiv"></div>
     </div>
-
+    
     <!-- Right side: scrollable image area -->
     <div id="imagediv">
     </div>
