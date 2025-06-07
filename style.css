@@ -82,6 +82,7 @@ p:hover {
   padding-left: 400px;
   display: flex;
   align-items: flex-end;
+  overflow-y: scroll;
   text-align: left;  
 }
 
