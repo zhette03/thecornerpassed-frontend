@@ -79,7 +79,6 @@ p:hover {
 #descriptiondiv {
   flex: 1;
   padding: 30px;
-  padding-left: 400px;
   display: flex;
   align-items: flex-end;
   text-align: left;  
