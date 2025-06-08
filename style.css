@@ -41,7 +41,7 @@ body, html {
 /* Top row container for the 4 navigation columns */
 #topnav {
   display: flex;
-  flex: 1;
+  height: 60vh;
 }
 
 #logodiv {
@@ -77,13 +77,13 @@ p:hover {
 
 /* Bottom row - description div */
 #descriptiondiv {
-  flex: 1;
+  height: 40vh;
   padding: 30px;
   padding-left: 400px;
   display: flex;
   align-items: flex-end;
-  overflow-y: scroll;
   text-align: left;  
+  overflow-y: scroll;
 }
 
 #descp {
@@ -108,5 +108,4 @@ p:hover {
   max-width: 100%;
   margin-bottom: 20px;
   align-items: center;
-}
-  
+} 
