@@ -110,12 +110,24 @@ window.onload = function () {
               if (images && images.length > 0) {
                 updateDescription(type); // Show description for SNET categories
                 images.forEach(src => {
-                  const img = document.createElement('img');
-                  img.src = src;
-                  img.alt = type;
-                  img.style.maxWidth = '100%';
-                  img.style.marginBottom = '20px';
-                  imagediv.appendChild(img);
+                  const fileExt = src.split('.').pop().toLowerCase();
+            
+                  if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+                    const video = document.createElement('video');
+                    video.src = src;
+                    video.controls = true;
+                    video.style.maxWidth = '100%';
+                    video.style.marginBottom = '20px';
+                    video.autoplay = false;
+                    imagediv.appendChild(video);
+                  } else {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = type;
+                    img.style.maxWidth = '100%';
+                    img.style.marginBottom = '20px';
+                    imagediv.appendChild(img);
+                  }
                 });
             
                 imagediv.style.visibility = 'visible';
@@ -136,12 +148,24 @@ window.onload = function () {
                   
                     if (images && images.length > 0) {
                       images.forEach(src => {
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.alt = name;
-                        img.style.maxWidth = '100%';
-                        img.style.marginBottom = '20px';
-                        imagediv.appendChild(img);
+                        const fileExt = src.split('.').pop().toLowerCase();
+                  
+                        if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+                          const video = document.createElement('video');
+                          video.src = src;
+                          video.controls = false;
+                          video.style.maxWidth = '100%';
+                          video.style.marginBottom = '20px';
+                          video.autoplay = true;
+                          imagediv.appendChild(video);
+                        } else {
+                          const img = document.createElement('img');
+                          img.src = src;
+                          img.alt = name;
+                          img.style.maxWidth = '100%';
+                          img.style.marginBottom = '20px';
+                          imagediv.appendChild(img);
+                        }
                       });
                   
                       imagediv.style.visibility = 'visible';
