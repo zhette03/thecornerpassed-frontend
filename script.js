@@ -63,6 +63,28 @@ window.onload = function () {
   };
 
   // Function to update description
+function openModal(imgSrc) {
+    modal.style.display = 'block';
+    modalImg.src = imgSrc;
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  closeBtn.onclick = closeModal;
+  modal.onclick = function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+
   function updateDescription(key) {
     const descP = document.getElementById('descp');
     if (descriptions[key]) {
@@ -71,7 +93,6 @@ window.onload = function () {
     }
   }
 
-  // Function to hide description
   function hideDescription() {
     descriptiondiv.style.visibility = 'hidden';
   }
@@ -103,12 +124,10 @@ window.onload = function () {
             imagediv.style.visibility = 'hidden';
             hideDescription();
             
-            // Special handling for SNET collection
             if (currentCollection === "SNET") {
-              // Directly show media for SNET categories
               const images = imageSets[type];
               if (images && images.length > 0) {
-                updateDescription(type); // Show description for SNET categories
+                updateDescription(type);
                 images.forEach(src => {
                   const fileExt = src.split('.').pop().toLowerCase();
             
@@ -126,6 +145,7 @@ window.onload = function () {
                     img.alt = type;
                     img.style.maxWidth = '100%';
                     img.style.marginBottom = '20px';
+                    img.addEventListener('click', () => openModal(src));
                     imagediv.appendChild(img);
                   }
                 });
@@ -133,7 +153,6 @@ window.onload = function () {
                 imagediv.style.visibility = 'visible';
               }
             } else {
-              // Original handling for other collections
               const names = data[currentCollection][type];
               if (names) {
                 names.forEach(name => {
@@ -143,8 +162,8 @@ window.onload = function () {
 
                   nameP.addEventListener('click', () => {
                     const images = imageSets[name];
-                    imagediv.innerHTML = ''; // clear previous images
-                    updateDescription(name); // Show description for photographer
+                    imagediv.innerHTML = '';
+                    updateDescription(name);
                   
                     if (images && images.length > 0) {
                       images.forEach(src => {
@@ -164,6 +183,7 @@ window.onload = function () {
                           img.alt = name;
                           img.style.maxWidth = '100%';
                           img.style.marginBottom = '20px';
+                          img.addEventListener('click', () => openModal(src));
                           imagediv.appendChild(img);
                         }
                       });
@@ -182,3 +202,4 @@ window.onload = function () {
     });
   });
 };
+
