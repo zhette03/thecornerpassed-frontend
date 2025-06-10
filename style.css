@@ -83,6 +83,7 @@ p:hover {
   align-items: flex-end;
   text-align: left;  
   overflow-y: scroll;
+  border-top: 1px solid black;
 }
 
 #descp {
