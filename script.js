@@ -1,10 +1,12 @@
-window.onload = function () {
   const logodiv = document.getElementById('logodiv');
   const colldiv = document.getElementById('colldiv');
   const typediv = document.getElementById('typediv');
   const photodiv = document.getElementById('photodiv');
   const imagediv = document.getElementById('imagediv');
   const descriptiondiv = document.getElementById('descriptiondiv');
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeBtn = document.getElementsByClassName('close')[0];
 
   let currentCollection = "";
 
@@ -27,6 +29,8 @@ window.onload = function () {
       types: ["Film", "Images", "Exhibition"]
     }
   };
+
+
 
   // Descriptions for each photoshoot
   const descriptions = {
