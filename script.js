@@ -223,23 +223,6 @@ logodiv.addEventListener('click', () => {
   currentType = ""; // Reset current type
 });
 
-paragraphs.forEach(p => {
-    p.addEventListener('mouseenter', async () => {
-      await Tone.start(); // Unlock audio context if needed
-  
-      const synth = new Tone.Synth({
-        oscillator: { type: "sine" },
-        envelope: {
-          attack: 0.5,
-          decay: 0.1,
-          sustain: 0.3,
-          release: 0.1
-        }
-      }).toDestination();
-  
-      synth.triggerAttackRelease("E4", 0.3); // You can vary the note or duration if desired
-    });
-  });
 
 logodiv.addEventListener('click', async () => {
     await Tone.start(); 
