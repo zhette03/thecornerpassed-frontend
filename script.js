@@ -1,41 +1,48 @@
-  const logodiv = document.getElementById('logodiv');
-  const colldiv = document.getElementById('colldiv');
-  const typediv = document.getElementById('typediv');
-  const photodiv = document.getElementById('photodiv');
-  const imagediv = document.getElementById('imagediv');
-  const descriptiondiv = document.getElementById('descriptiondiv');
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImage');
-  const closeBtn = document.getElementsByClassName('close')[0];
+window.onload = function () {
+    const logodiv = document.getElementById('logodiv');
+    const colldiv = document.getElementById('colldiv');
+    const typediv = document.getElementById('typediv');
+    const photodiv = document.getElementById('photodiv');
+    const imagediv = document.getElementById('imagediv');
+    const descriptiondiv = document.getElementById('descriptiondiv');
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.getElementsByClassName('close')[0];
+    const modalPrevArrow = document.getElementById('modalPrevArrow');
+    const modalNextArrow = document.getElementById('modalNextArrow');
+  
+    const paragraphs = colldiv.querySelectorAll('p');
 
-  let currentCollection = "";
-
-  const data = {
-    SS26: {
-      types: ["Lookbook"],
-      Lookbook: ["GG Kim"]
-    },
-    SS25: {
-      types: ["Lookbook", "Editorial"],
-      Lookbook: ["Louis F. Cota"],
-      Editorial: ["Chema Torres", "Louis F. Cota*", "Octavio Cruz"]
-    },
-    FW24: {
-      types: ["Lookbook", "Editorial"],
-      Lookbook: ["Louis F. Cota**"],
-      Editorial: ["Alberto Valle-Gutierrez", "Hernan Esquinca", "Ocean Adamovich Ortiz", "Louis F. Cota***"]
-    },
-    SNET: {
-      types: ["Film", "Images", "Exhibition"]
-    }
-  };
-
-
+    let currentCollection = "";
+    let currentImages = [];
+    let currentImageIndex = 0;
+    let modalImageIndex = 0;
+    let currentType = ""; // Track current type for alignment
+  
+    const data = {
+        SS26: {
+            types: ["Lookbook"],
+            Lookbook: ["GG Kim"]
+        },
+        SS25: {
+            types: ["Lookbook", "Editorial"],
+            Lookbook: ["Louis F. Cota"],
+            Editorial: ["Chema Torres", "Louis F. Cota*", "Octavio Cruz"]
+        },
+        FW24: {
+            types: ["Lookbook", "Editorial"],
+            Lookbook: ["Louis F. Cota**"],
+            Editorial: ["Alberto Valle-Gutierrez", "Hernan Esquinca", "Ocean Adamovich Ortiz", "Louis F. Cota***"]
+        },
+        SNET: {
+            types: ["Film", "Images", "Exhibition"]
+        }
+    };
 
   // Descriptions for each photoshoot
   const descriptions = {
     "GG Kim": "From inside the cage, everyone appears behind bars. To be livestock is to live in the tension between breath and ownership: to move, to feel, to bleed, while being counted, priced, and contained. In the factories of flesh, animals are born not into life but into labor. Not as beings, but as yield. They are kept alive only to serve death, suspended in a state of extraction.<br><br> This is not far from how empire handles bodies it cannot recognize as sovereign. The Indigenous, the disabled, the colonized; named wild, named burden, named less-than. Like land mapped for conquest, or animals tagged for slaughter, we too are sorted, measured, and made legible to the market. The logics are parallel. The cages are the same.<br><br> Imperialism arrives not as chaos, but as grid. It wraps itself in order, in progress, in care, but its care is cold. Its language is smooth, efficient, deadly. It paves over kinship with profit, rewrites survival into stock. <br><br> LIVE-STOCK moves inside this contradiction. Through dress, through skin, through fabric that scratches and remembers, it asks what becomes of the wild when it is worn. It fuses military cut with feral texture, bodies clad in both resistance and wound. Here, clothing does not conceal; it reveals. The seams speak of containment. The folds remember escape.<br><br> To be called animal is not insult, but inheritance. The animal is not beneath—it is beside. Kin in captivity. Reflection in refusal. We claim it not to regress, but to remember. That there were once other ways. That care was once something softer.<br><br> We wear what they tried to erase. We wear it snarling. We wear it weeping. We wear it still.<br><br> The question remains:<br> Who gets caged?<br> Who gets consumed?<br> And who decides what violence is allowed?<br> We know it persists.<br><br>Photo– GG Kim",
-    "Louis F. Cota": "Sin Embargo explores how non-lettered languages offer alternative ways of experiencing time, memory, and relation. Emerging from a world shaped by Western, alphabetic language with its linear, progressive temporality, it asks: what happens to memory that doesn’t fit sentence structure? How do we remember when inherited tools encourage forgetting?<br><br> Guided by linguistic relativity and decolonial critiques, the project contrasts lettered language’s rigid frameworks, linear time, isolated self, archived knowledge, with non-lettered forms that communicate through rhythm, repetition, and relation, holding time as cyclical and alive. These languages such as Khipu, pictography, and other ancestral semiotic systems don’t just preserve memory; they activate it.<br><br> Dress is central here, not mere adornment, but a living language operating through social exchange, cultural memory, and embodied practice. Like Khipu, dress encodes meaning through relational acts, transmitting histories across generations. Drawing on Signs of the Americas, the nonlinear temporality of Story of Your Life, and the short story Sin Embargo, this work positions dress as an embodied archive and a site of semiotic resistance.<br><br> This becomes a space of reremembering, not retrieval, but reorientation, where language expands beyond text, time loosens, and memory lingers in what we wear and how we relate across generations.<br><br>Creative Direction– Jordan Perdomo<br> Photo– Louis F. Cota<br> Post Production– Louis F. Cota, Jordan Perdomo<br> MUA– Qeto Chantadze<br> Styling– Errin Shin<br> Talent– Wife Erath, Izzy Ravana, Joaquín Echeverry Braver, Julian Wolfe, Chandni Amira Dhanoa<br> Production Assist– Brandon Salinas, Robin Singh Johal  ",
+    "Louis F. Cota": "Sin Embargo explores how non-lettered languages offer alternative ways of experiencing time, memory, and relation. Emerging from a world shaped by Western, alphabetic language with its linear, progressive temporality, it asks: what happens to memory that doesn’t fit sentence structure? How do we remember when inherited tools encourage forgetting?<br><br> Guided by linguistic relativity and decolonial critiques, the project contrasts lettered language’s rigid frameworks, linear time, isolated self, archived knowledge, with non-lettered forms that communicate through rhythm, repetition, and relation, holding time as cyclical and alive. These languages such as Khipu, pictography, and other ancestral semiotic systems don’t just preserve memory; they activate it.<br><br> Dress is central here, not mere adornment, but a living language operating through social exchange, cultural memory, and embodied practice. Like Khipu, dress encodes meaning through relational acts, transmitting histories across generations. Drawing on Signs of the Americas, the nonlinear temporality of Story of Your Life, and the short story Sin Embargo, this work positions dress as an embodied archive and a site of semiotic resistance.<br><br> This becomes a space of reremembering, not retrieval, but reorientation, where language expands beyond text, time loosens, and memory lingers in what we wear and how we relate across generations.<br><br> Creative Direction– Jordan Perdomo<br> Photo– Louis F. Cota<br> Post Production– Louis F. Cota, Jordan Perdomo<br> MUA– Qeto Chantadze<br> Styling– Errin Shin<br> Talent– Wife Erath, Izzy Ravana, Joaquín Echeverry Braver, Julian Wolfe, Chandni Amira Dhanoa<br> Production Assist– Brandon Salinas, Robin Singh Johal",
     "Chema Torres": "Direction– Jordan Perdomo, Joaquín E. Braver<br> Production– Joaquín E. Braver<br> Photo– Chema Torres<br> Post Production– Jordan Perdomo<br> Style– Javier Barrera<br> Assist– Emiliano Valdez<br> Talent– Paula Cintora Jaramillo, Mar Solares ",
     "Louis F. Cota*": "Creative Direction– Jordan Perdomo<br>  Photo– Louis F. Cota<br>  Post Production– Louis F. Cota, Jordan Perdomo <br> MUA– Qeto Chantadze<br>  Styling– Errin Shin<br>  Talent– Wife Erath, Izzy Ravana, Joaquín Echeverry Braver, Julian Wolfe, Chandni Amira Dhanoa<br>  Production Assist– Brandon Salinas, Robin Singh Johal ",
     "Octavio Cruz": "Direction– Jordan Perdomo, Octavio Cruz<br> Photo– Octavio Cruz<br> Post Production– Jordan Perdomo<br> Makeup– Octavio Cruz<br> Talent– Molly ",
@@ -66,144 +73,325 @@
     "Exhibition": ["https://res.cloudinary.com/djdu9iqeu/video/upload/v1748282177/IMG_0576_aenixq.mov","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281857/_DSF1144_bnndef.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281859/002_mq3pyp.jpg"]
   };
 
-  // Function to update description
-function openModal(imgSrc) {
-    modal.style.display = 'block';
-    modalImg.src = imgSrc;
+  
+  function showModalImage(index) {
+    if (currentImages.length === 0) return;
+    
+    modalImageIndex = index;
+    if (modalImageIndex < 0) modalImageIndex = currentImages.length - 1;
+    if (modalImageIndex >= currentImages.length) modalImageIndex = 0;
+    
+    const src = currentImages[modalImageIndex];
+    const fileExt = src.split('.').pop().toLowerCase();
+    
+    if (!['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+        modalImg.src = src;
+    }
+    
+    if (currentImages.length > 1) {
+        modalPrevArrow.style.display = 'block';
+        modalNextArrow.style.display = 'block';
+    } else {
+        modalPrevArrow.style.display = 'none';
+        modalNextArrow.style.display = 'none';
+    }
+  }
+
+  function cleanPhotographerName(name) {
+    if (name.startsWith("Louis F. Cota")) {
+      return "Louis F. Cota";
+    }
+    return name;
+  }
+
+  function nextModalImage() {
+    let nextIndex = modalImageIndex + 1;
+    while (nextIndex < currentImages.length) {
+        const fileExt = currentImages[nextIndex].split('.').pop().toLowerCase();
+        if (!['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+            showModalImage(nextIndex);
+            return;
+        }
+        nextIndex++;
+    }
+    nextIndex = 0;
+    while (nextIndex <= modalImageIndex) {
+        const fileExt = currentImages[nextIndex].split('.').pop().toLowerCase();
+        if (!['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+            showModalImage(nextIndex);
+            return;
+        }
+        nextIndex++;
+    }
+  }
+
+  function prevModalImage() {
+    let prevIndex = modalImageIndex - 1;
+    while (prevIndex >= 0) {
+        const fileExt = currentImages[prevIndex].split('.').pop().toLowerCase();
+        if (!['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+            showModalImage(prevIndex);
+            return;
+        }
+        prevIndex--;
+    }
+    prevIndex = currentImages.length - 1;
+    while (prevIndex >= modalImageIndex) {
+        const fileExt = currentImages[prevIndex].split('.').pop().toLowerCase();
+        if (!['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+            showModalImage(prevIndex);
+            return;
+        }
+        prevIndex--;
+    }
+  }
+
+  modalPrevArrow.addEventListener('click', prevModalImage);
+  modalNextArrow.addEventListener('click', nextModalImage);
+
+  document.addEventListener('keydown', function(event) {
+      if (modal.style.display === 'block') {
+          if (event.key === 'Escape') {
+              closeModal();
+          } else if (event.key === 'ArrowLeft') {
+              event.preventDefault();
+              prevModalImage();
+          } else if (event.key === 'ArrowRight') {
+              event.preventDefault();
+              nextModalImage();
+          }
+      }
+  });
+
+  function openModal(imgSrc) {
+      modal.style.display = 'block';
+      modalImg.src = imgSrc;
+      modalImageIndex = currentImages.findIndex(src => src === imgSrc);
+      showModalImage(modalImageIndex);
   }
 
   function closeModal() {
-    modal.style.display = 'none';
+      modal.style.display = 'none';
+      modalPrevArrow.style.display = 'none';
+      modalNextArrow.style.display = 'none';
   }
 
   closeBtn.onclick = closeModal;
   modal.onclick = function(event) {
-    if (event.target === modal) {
-      closeModal();
-    }
+      if (event.target === modal) {
+          closeModal();
+      }
   };
 
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
-  });
-
   function updateDescription(key) {
-    const descP = document.getElementById('descp');
-    if (descriptions[key]) {
-      descP.innerHTML = descriptions[key];
-      descriptiondiv.style.visibility = 'visible';
-    }
+      const descP = document.getElementById('descp');
+      if (descriptions[key]) {
+          descP.innerHTML = descriptions[key];
+          
+          // Set alignment based on current type
+          if (currentType === "Editorial") {
+              descriptiondiv.style.alignItems = 'flex-end';
+          } else {
+              descriptiondiv.style.alignItems = 'flex-start';
+          }
+          
+          descriptiondiv.style.visibility = 'visible';
+      }
   }
 
   function hideDescription() {
-    descriptiondiv.style.visibility = 'hidden';
+      descriptiondiv.style.visibility = 'hidden';
+      // Reset alignment when hiding
+      descriptiondiv.style.alignItems = 'flex-start';
   }
 
-  logodiv.addEventListener('click', () => {
+logodiv.addEventListener('click', () => {
+  // Hide the logo immediately
+  logodiv.style.visibility = 'hidden';
+
+  // Wait 1000ms, then show the logo again and remove centered class
+  setTimeout(() => {
+    logodiv.classList.remove('centered');
+    logodiv.style.visibility = 'visible';
+
+    // Show navigation
     colldiv.style.visibility = 'visible';
-    hideDescription();
-  });
+  }, 2000);
 
-  colldiv.querySelectorAll('p').forEach(p => {
-    p.addEventListener('click', () => {
-      currentCollection = p.innerText;
-      typediv.innerHTML = '';
-      photodiv.innerHTML = '';
-      imagediv.innerHTML = '';
-      imagediv.style.visibility = 'hidden';
-      photodiv.style.visibility = 'hidden';
-      hideDescription();
+  hideDescription();
+  currentImages = [];
+  currentType = ""; // Reset current type
+});
 
-      if (data[currentCollection]) {
-        data[currentCollection].types.forEach(type => {
-          const typeP = document.createElement('p');
-          typeP.innerText = type;
-          typediv.appendChild(typeP);
-
-          typeP.addEventListener('click', () => {
-            photodiv.innerHTML = '';
-            imagediv.innerHTML = '';
-            imagediv.style.visibility = 'hidden';
-            hideDescription();
-            
-            if (currentCollection === "SNET") {
-              const images = imageSets[type];
-              if (images && images.length > 0) {
-                updateDescription(type);
-                images.forEach(src => {
-                  const fileExt = src.split('.').pop().toLowerCase();
-            
-                  if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
-                    const video = document.createElement('video');
-                    video.src = src;
-                    video.controls = true;
-                    video.style.maxWidth = '100%';
-                    video.style.marginBottom = '20px';
-                    video.autoplay = false;
-                    imagediv.appendChild(video);
-                  } else {
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.alt = type;
-                    img.style.maxWidth = '100%';
-                    img.style.marginBottom = '20px';
-                    img.addEventListener('click', () => openModal(src));
-                    imagediv.appendChild(img);
-                  }
-                });
-            
-                imagediv.style.visibility = 'visible';
-              }
-            } else {
-              const names = data[currentCollection][type];
-              if (names) {
-                names.forEach(name => {
-                  const nameP = document.createElement('p');
-                  nameP.innerText = name;
-                  photodiv.appendChild(nameP);
-
-                  nameP.addEventListener('click', () => {
-                    const images = imageSets[name];
-                    imagediv.innerHTML = '';
-                    updateDescription(name);
-                  
-                    if (images && images.length > 0) {
-                      images.forEach(src => {
-                        const fileExt = src.split('.').pop().toLowerCase();
-                  
-                        if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
-                          const video = document.createElement('video');
-                          video.src = src;
-                          video.controls = false;
-                          video.style.maxWidth = '100%';
-                          video.style.marginBottom = '20px';
-                          video.autoplay = true;
-                          imagediv.appendChild(video);
-                        } else {
-                          const img = document.createElement('img');
-                          img.src = src;
-                          img.alt = name;
-                          img.style.maxWidth = '100%';
-                          img.style.marginBottom = '20px';
-                          img.addEventListener('click', () => openModal(src));
-                          imagediv.appendChild(img);
-                        }
-                      });
-                  
-                      imagediv.style.visibility = 'visible';
-                    }
-                  });
-                });
-                photodiv.style.visibility = 'visible';
-              }
-            }
-          });
-        });
-        typediv.style.visibility = 'visible';
-      }
+paragraphs.forEach(p => {
+    p.addEventListener('mouseenter', async () => {
+      await Tone.start(); // Unlock audio context if needed
+  
+      const synth = new Tone.Synth({
+        oscillator: { type: "sine" },
+        envelope: {
+          attack: 0.5,
+          decay: 0.1,
+          sustain: 0.3,
+          release: 0.1
+        }
+      }).toDestination();
+  
+      synth.triggerAttackRelease("E4", 0.3); // You can vary the note or duration if desired
     });
   });
-};
 
+logodiv.addEventListener('click', async () => {
+    await Tone.start(); 
+  
+
+    const volume = new Tone.Volume(-60).toDestination();
+  
+
+    const synth = new Tone.Synth({
+        oscillator: {
+          type: "sine" // Options: 'sine', 'square', 'triangle', 'sawtooth', etc.
+        },
+        envelope: {
+          attack: 0.5,      // Time to reach peak
+          decay: 0.1,       // Time to fall to sustain level
+          sustain: 0.8,     // Sustain level
+          release: 0.1        // Time to release after note ends
+        }
+      }).connect(volume);
+  
+
+    volume.volume.setValueAtTime(-60, Tone.now());
+    volume.volume.linearRampToValueAtTime(1, Tone.now() + 2);
+  
+  
+    synth.triggerAttackRelease("E4", 2);
+  
+    // Metal synth that will play after the ramp
+    const metal = new Tone.MetalSynth({
+      frequency: 200,
+      envelope: {
+        attack: 0.001,
+        decay: 0.2,
+        release: 0.1
+      },
+      harmonicity: 2.1,
+      modulationIndex: 32,
+      resonance: 4000,
+      octaves: 3.5
+    }).toDestination();
+  
+    // Schedule metal synth to trigger at the end of the ramp
+    Tone.Transport.scheduleOnce(() => {
+      metal.triggerAttackRelease("C3", 1);
+    }, "+2");
+  
+    Tone.Transport.start();
+  });
+
+  // Rest of the event listeners remain the same
+  colldiv.querySelectorAll('p').forEach(p => {
+      p.addEventListener('click', () => {
+          currentCollection = p.innerText;
+          typediv.innerHTML = '';
+          photodiv.innerHTML = '';
+          imagediv.innerHTML = '';
+          imagediv.style.visibility = 'hidden';
+          photodiv.style.visibility = 'hidden';
+          hideDescription();
+          currentImages = [];
+          currentType = "";
+
+          if (data[currentCollection]) {
+              data[currentCollection].types.forEach(type => {
+                  const typeP = document.createElement('p');
+                  typeP.innerText = type;
+                  typediv.appendChild(typeP);
+
+                  typeP.addEventListener('click', () => {
+                      currentType = type;
+                      photodiv.innerHTML = '';
+                      imagediv.innerHTML = '';
+                      imagediv.style.visibility = 'hidden';
+                      hideDescription();
+                      currentImages = [];
+                      
+                      if (currentCollection === "SNET") {
+                          const images = imageSets[type];
+                          if (images && images.length > 0) {
+                              currentImages = images;
+                              updateDescription(type);
+                              images.forEach(src => {
+                                  const fileExt = src.split('.').pop().toLowerCase();
+                          
+                                  if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+                                      const video = document.createElement('video');
+                                      video.src = src;
+                                      video.controls = true;
+                                      video.style.maxWidth = '100%';
+                                      video.style.marginBottom = '20px';
+                                      video.autoplay = false;
+                                      imagediv.appendChild(video);
+                                  } else {
+                                      const img = document.createElement('img');
+                                      img.src = src;
+                                      img.alt = type;
+                                      img.style.maxWidth = '100%';
+                                      img.style.marginBottom = '20px';
+                                      img.addEventListener('click', () => openModal(src));
+                                      imagediv.appendChild(img);
+                                  }
+                              });
+                              imagediv.style.visibility = 'visible';
+                          }
+                      } else {
+                          const names = data[currentCollection][type];
+                          if (names) {
+                            names.forEach(name => {
+                                const nameP = document.createElement('p');
+                                nameP.innerText = cleanPhotographerName(name);
+                                photodiv.appendChild(nameP);
+                              
+                                nameP.addEventListener('click', () => {
+                                  const images = imageSets[name];
+                                  imagediv.innerHTML = '';
+                                  updateDescription(name);
+                              
+                                  if (images && images.length > 0) {
+                                    currentImages = images;
+                                    images.forEach(src => {
+                                      const fileExt = src.split('.').pop().toLowerCase();
+                              
+                                      if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+                                        const video = document.createElement('video');
+                                        video.src = src;
+                                        video.controls = false;
+                                        video.style.maxWidth = '100%';
+                                        video.style.marginBottom = '20px';
+                                        video.autoplay = true;
+                                        imagediv.appendChild(video);
+                                      } else {
+                                        const img = document.createElement('img');
+                                        img.src = src;
+                                        img.alt = name;
+                                        img.style.maxWidth = '100%';
+                                        img.style.marginBottom = '20px';
+                                        img.addEventListener('click', () => openModal(src));
+                                        imagediv.appendChild(img);
+                                      }
+                                    });
+                                    imagediv.style.visibility = 'visible';
+                                  }
+                                });
+                              });
+                              
+                              photodiv.style.visibility = 'visible';
+                          }
+                      }
+                  });
+              });
+              typediv.style.visibility = 'visible';
+          }
+      });
+  });
+};
