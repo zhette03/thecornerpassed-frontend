@@ -6,7 +6,7 @@ body, html {
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  cursor:crosshairs;
+  cursor: url('CURSORTCPB.png'), auto;
 }
 
 #logo {
@@ -17,8 +17,8 @@ body, html {
 }
 
 #logo:hover {
-  width: 140px;
-  cursor: pointer;
+  width: 130px;
+  cursor: url('CURSORTCPYELLO.png'), auto;
 }
 
 #maindiv {
@@ -51,6 +51,21 @@ body, html {
   align-content: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+}
+
+/* Centered state for logo */
+#logodiv.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+
+}
+
+#logodiv.centered #logo {
+  transform: scale(7);
 }
 
 /* Divide top nav into columns */
@@ -58,7 +73,6 @@ body, html {
   flex: 1;
   padding: 20px;
   box-sizing: border-box;
-  /*border: solid 0.5px rgb(172, 172, 172);*/
   align-content: center;
   justify-content: center;
   text-align: center;
@@ -67,12 +81,11 @@ body, html {
 
 p:hover {
   text-decoration: overline;
-  cursor: pointer;
+  cursor: url('CURSORTCPYELLO.png'), auto;
 }
 
 #descp:hover {
   text-decoration: none;
-  cursor: crosshair
 }
 
 /* Bottom row - description div */
@@ -80,18 +93,39 @@ p:hover {
   flex: 1;
   padding: 30px;
   display: flex;
-  align-items: flex-end;
-  text-align: left;  
-  overflow-y: scroll;
+  align-items: flex-start;
+  text-align: left;
+  overflow-y: auto;
+  max-height: calc(100vh / 2 - 40px);
+  visibility: hidden;
+}
+
+#descriptiondiv::-webkit-scrollbar {
+  width: 6px;
+}
+
+#descriptiondiv::-webkit-scrollbar-track {
+  background: white
+}
+
+#descriptiondiv::-webkit-scrollbar-thumb {
+  background: black;
+  min-height: 6px;
+  background-clip: content-box;
+}
+
+#descriptiondiv::-webkit-scrollbar-thumb:hover {
+  background: yellow;
 }
 
 #descp {
-  
+  width: 100%;
+  overflow-wrap: break-word;
 }
 
 /* Right side: images */
 #imagediv {
-  margin-left: 50vw; /* Push to the right of fixed navdiv */
+  margin-left: 50vw;
   width: 50vw;
   height: 100vh;
   overflow-y: scroll;
@@ -99,14 +133,42 @@ p:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  visibility: hidden;
 }
 
+/* Navigation arrows */
+.modal-nav-arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  color: yellow;
+  cursor: url('CURSORTCPYELLO.png'), auto;
+  user-select: none;
+  z-index: 1001;
+  transition: opacity 0.3s;
+  display: none;
+}
+
+.modal-nav-arrows:hover {
+  opacity: 1;
+}
+
+.modal-prev-arrow {
+  left: -10vw;
+}
+
+.modal-next-arrow {
+  right: -10vw;
+}
 
 /* Optional image styling */
 #imagediv img {
   max-width: 100%;
   margin-bottom: 20px;
   align-items: center;
+  cursor: url('CURSORTCPYELLO.png'), auto;
 }
 
 .modal {
@@ -125,15 +187,19 @@ p:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .modal-content img {
-  width: 100%;
-  height: 100%;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
+
 .close {
   position: absolute;
   top: 15px;
@@ -142,9 +208,19 @@ p:hover {
   font-size: 40px;
   font-weight: bold;
   visibility: hidden;
-  cursor: pointer;
+  cursor: url('CURSORTCPYELLO.png'), auto;
 }
 
 .close:hover {
   color: #bbb;
+}
+
+.modal-prev-arrow::after { content: '⟵'; }
+.modal-next-arrow::after { content: '⟶'; }
+
+/* Hide navigation initially */
+.nav-hidden #colldiv,
+.nav-hidden #typediv,
+.nav-hidden #photodiv {
+  visibility: hidden;
 }
