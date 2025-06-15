@@ -9,6 +9,25 @@ body, html {
   cursor: url('CURSORTCPB.png'), auto;
 }
 
+#body::-webkit-scrollbar {
+  width: 6px;
+}
+
+#body::-webkit-scrollbar-track {
+  background: white
+}
+
+#body::-webkit-scrollbar-thumb {
+  background: black;
+  min-height: 6px;
+  background-clip: content-box;
+}
+
+#body::-webkit-scrollbar-thumb:hover {
+  background: yellow;
+}
+
+
 #logo {
   width: 120px;
   height: auto;   
