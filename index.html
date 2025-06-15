@@ -1,52 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8" />
 </head>
 <body>
-  <div id="maindiv">
-    <div id="navdiv">
-      <!-- Top row with 4 navigation columns -->
-      <div id="topnav">
-        <!-- Logo column -->
-        <div id="logodiv">
-          <img id="logo" src="LOGOTCP1.png" alt="TCPLOGO">
+    <div id="maindiv">
+        <div id="navdiv">
+            <div id="topnav">
+                <div id="logodiv" class="centered">
+                    <img id="logo" src="LOGOTCP1.png" alt="TCPLOGO">
+                </div>
+                <div id="colldiv">
+                    <p>SS26</p>
+                    <p>SS25</p>
+                    <p>FW24</p>
+                    <p>SNET</p>
+                </div>
+                <div id="typediv"></div>
+                <div id="photodiv"></div>
+            </div>
+            <div id="descriptiondiv">
+                <p id="descp"></p>
+            </div>
         </div>
+        <div id="imagediv"></div>
+    </div>
 
-        <!-- Collection options -->
-        <div id="colldiv">
-          <p>SS26</p>
-          <p>SS25</p>
-          <p>FW24</p>
-          <p>SNET</p>
-        </div>
-
-        <!-- Type options (dynamic) -->
-        <div id="typediv"></div>
-
-        <!-- Photographer options (dynamic) -->
-        <div id="photodiv"></div>
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <div class="modal-content">
+          <img id="modalImage" src="" alt="">
+          <!-- Modal navigation arrows -->
+          <div class="modal-nav-arrows modal-prev-arrow" id="modalPrevArrow"></div>
+          <div class="modal-nav-arrows modal-next-arrow" id="modalNextArrow"></div>
       </div>
-      
-      <!-- Bottom row - description -->
-      <div id="descriptiondiv">
-        <p id="descp">
-
-        </p>
-      </div>
-    </div>
-    
-    <!-- Right side: scrollable image area -->
-    <div id="imagediv">
-    </div>
   </div>
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-content">
-      <img id="modalImage" src="" alt="">
-    </div>
-  </div>
+  <script src="script.js" defer></script>
 </body>
 </html>
