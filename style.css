@@ -9,21 +9,21 @@ body, html {
   cursor: url('CURSORTCPB.png'), auto;
 }
 
-#body::-webkit-scrollbar {
+#imagediv::-webkit-scrollbar {
   width: 6px;
 }
 
-#body::-webkit-scrollbar-track {
+#imagediv::-webkit-scrollbar-track {
   background: white
 }
 
-#body::-webkit-scrollbar-thumb {
+#imagediv::-webkit-scrollbar-thumb {
   background: black;
   min-height: 6px;
   background-clip: content-box;
 }
 
-#body::-webkit-scrollbar-thumb:hover {
+#imagediv::-webkit-scrollbar-thumb:hover {
   background: yellow;
 }
 
