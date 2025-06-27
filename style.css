@@ -60,7 +60,9 @@ body, html {
 
 #topnav {
   display: flex;
+  align-items: flex-start;
   flex: 1;
+
 }
 
 #logodiv {
@@ -109,12 +111,21 @@ p:hover {
   flex: 1;
   padding: 30px;
   display: flex;
-  align-items: flex-start;
-  text-align: left;
+  flex-direction: column;
   overflow-y: auto;
   max-height: calc(100vh / 2 - 40px);
   visibility: hidden;
+  justify-content: flex-end; 
 }
+
+#descriptiondiv.align-top {
+  justify-content: flex-start;
+}
+
+#descwrapper {
+  width: 100%;
+}
+
 
 #descriptiondiv::-webkit-scrollbar {
   width: 6px;
@@ -208,13 +219,37 @@ p:hover {
 }
 
 .modal-content img {
-  max-width: 90vw;
+  max-width: 75vw;
   max-height: 90vh;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
 }
+
+.custom-arrow {
+  width: 25px !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: url('CURSORTCPYELLO.png'), auto;
+  user-select: none;
+  z-index: 1001;
+  display: none;
+  mix-blend-mode:difference;
+}
+
+
+.modal-prev-arrow {
+  left: calc(50% - 42vw); 
+}
+
+.modal-next-arrow {
+  right: calc(50% - 42vw);
+}
+
+
 
 .close {
   position: absolute;
