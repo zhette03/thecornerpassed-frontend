@@ -17,7 +17,7 @@ window.onload = function () {
     let currentImages = [];
     let currentImageIndex = 0;
     let modalImageIndex = 0;
-    let currentType = ""; // Track current type for alignment
+    let currentType = "";
   
     const data = {
         SS26: {
@@ -39,7 +39,7 @@ window.onload = function () {
         }
     };
 
-  // Descriptions for each photoshoot
+
   const descriptions = {
     "GG Kim": "From inside the cage, everyone appears behind bars. To be livestock is to live in the tension between breath and ownership: to move, to feel, to bleed, while being counted, priced, and contained. In the factories of flesh, animals are born not into life but into labor. Not as beings, but as yield. They are kept alive only to serve death, suspended in a state of extraction.<br><br> This is not far from how empire handles bodies it cannot recognize as sovereign. The Indigenous, the disabled, the colonized; named wild, named burden, named less-than. Like land mapped for conquest, or animals tagged for slaughter, we too are sorted, measured, and made legible to the market. The logics are parallel. The cages are the same.<br><br> Imperialism arrives not as chaos, but as grid. It wraps itself in order, in progress, in care, but its care is cold. Its language is smooth, efficient, deadly. It paves over kinship with profit, rewrites survival into stock. <br><br> LIVE-STOCK moves inside this contradiction. Through dress, through skin, through fabric that scratches and remembers, it asks what becomes of the wild when it is worn. It fuses military cut with feral texture, bodies clad in both resistance and wound. Here, clothing does not conceal; it reveals. The seams speak of containment. The folds remember escape.<br><br> To be called animal is not insult, but inheritance. The animal is not beneath—it is beside. Kin in captivity. Reflection in refusal. We claim it not to regress, but to remember. That there were once other ways. That care was once something softer.<br><br> We wear what they tried to erase. We wear it snarling. We wear it weeping. We wear it still.<br><br> The question remains:<br> Who gets caged?<br> Who gets consumed?<br> And who decides what violence is allowed?<br> We know it persists.<br><br>Photo– GG Kim",
     "Louis F. Cota": "Sin Embargo explores how non-lettered languages offer alternative ways of experiencing time, memory, and relation. Emerging from a world shaped by Western, alphabetic language with its linear, progressive temporality, it asks: what happens to memory that doesn’t fit sentence structure? How do we remember when inherited tools encourage forgetting?<br><br> Guided by linguistic relativity and decolonial critiques, the project contrasts lettered language’s rigid frameworks, linear time, isolated self, archived knowledge, with non-lettered forms that communicate through rhythm, repetition, and relation, holding time as cyclical and alive. These languages such as Khipu, pictography, and other ancestral semiotic systems don’t just preserve memory; they activate it.<br><br> Dress is central here, not mere adornment, but a living language operating through social exchange, cultural memory, and embodied practice. Like Khipu, dress encodes meaning through relational acts, transmitting histories across generations. Drawing on Signs of the Americas, the nonlinear temporality of Story of Your Life, and the short story Sin Embargo, this work positions dress as an embodied archive and a site of semiotic resistance.<br><br> This becomes a space of reremembering, not retrieval, but reorientation, where language expands beyond text, time loosens, and memory lingers in what we wear and how we relate across generations.<br><br> Creative Direction– Jordan Perdomo<br> Photo– Louis F. Cota<br> Post Production– Louis F. Cota, Jordan Perdomo<br> MUA– Qeto Chantadze<br> Styling– Errin Shin<br> Talent– Wife Erath, Izzy Ravana, Joaquín Echeverry Braver, Julian Wolfe, Chandni Amira Dhanoa<br> Production Assist– Brandon Salinas, Robin Singh Johal",
@@ -56,7 +56,7 @@ window.onload = function () {
     "Exhibition": "Director– Louis F. Cota<br> Creative Directors– Jordan Perdomo, Louis F Cota<br> Brand Designer– Jordan Perdomo<br> Executive Producer– Jordan Perdomo<br> Producer– Chandni Amira Dhanoa<br> Production Assistant– Brandon Salinas<br> Set Design– Chandni Amira Dhanoa<br> Styling– Miracle<br> Casting Director– Dax Reedy <br>Talent– Ava Anita, Peezy<br> On-set photographer– Louis F. Cota "
   };
 
-  // Photographer to image set mapping    
+   
   const imageSets = {
     "GG Kim": ["https://res.cloudinary.com/djdu9iqeu/image/upload/IMG_0363_2_Large_utp3sy.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276784/IMG_0365_Large_sxcpmu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276783/IMG_0371_Large_hgje6i.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276783/IMG_0378_Large_o85wdb.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276820/IMG_0386_Large_m2l4ix.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276822/IMG_0444_Large_gwbobh.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0453_Large_io0bwo.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0461_Large_ajd5m9.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0476_Large_iigmhe.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276825/IMG_0480_Large_bdvefv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0506_Large_idgsvf.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0513_Large_ccjkff.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0519_Large_trb5d6.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0553_Large_gw03l0.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0567_Large_oerdk8.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0606_Large_egbvpz.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0595_Large_l9oybx.png"],
     "Louis F. Cota": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277114/SS25.1_tabphj.jpg", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277119/SS25.2_q0ujay.jpg", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277116/SS25.3_y68awj.jpg", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277117/SS25.4_lopfp3.jpg", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277115/SS25.5_uch4jp.jpg", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277118/SS25.6_penxdh.jpg", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277127/SS25.7_stvwns.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277127/SS25.8_opayqi.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277127/SS25.9_jkzb4f.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748277123/SS25.10_xsrbjr.jpg"],
@@ -188,7 +188,7 @@ window.onload = function () {
       if (descriptions[key]) {
           descP.innerHTML = descriptions[key];
           
-          // Set alignment based on current type
+      
           if (currentType === "Editorial") {
               descriptiondiv.style.alignItems = 'flex-end';
           } else {
@@ -201,26 +201,26 @@ window.onload = function () {
 
   function hideDescription() {
       descriptiondiv.style.visibility = 'hidden';
-      // Reset alignment when hiding
+ 
       descriptiondiv.style.alignItems = 'flex-start';
   }
 
 logodiv.addEventListener('click', () => {
-  // Hide the logo immediately
+
   logodiv.style.visibility = 'hidden';
 
-  // Wait 1000ms, then show the logo again and remove centered class
+    
   setTimeout(() => {
     logodiv.classList.remove('centered');
     logodiv.style.visibility = 'visible';
 
-    // Show navigation
+
     colldiv.style.visibility = 'visible';
   }, 2000);
 
   hideDescription();
   currentImages = [];
-  currentType = ""; // Reset current type
+  currentType = "";
 });
 
 
@@ -233,13 +233,13 @@ logodiv.addEventListener('click', async () => {
 
     const synth = new Tone.Synth({
         oscillator: {
-          type: "sine" // Options: 'sine', 'square', 'triangle', 'sawtooth', etc.
+          type: "sine" 
         },
         envelope: {
-          attack: 0.5,      // Time to reach peak
-          decay: 0.1,       // Time to fall to sustain level
-          sustain: 0.8,     // Sustain level
-          release: 0.1        // Time to release after note ends
+          attack: 0.5,   
+          decay: 0.1,      
+          sustain: 0.8,  
+          release: 0.1        
         }
       }).connect(volume);
   
@@ -250,7 +250,7 @@ logodiv.addEventListener('click', async () => {
   
     synth.triggerAttackRelease("E4", 2);
   
-    // Metal synth that will play after the ramp
+
     const metal = new Tone.MetalSynth({
       frequency: 200,
       envelope: {
@@ -264,7 +264,7 @@ logodiv.addEventListener('click', async () => {
       octaves: 3.5
     }).toDestination();
   
-    // Schedule metal synth to trigger at the end of the ramp
+
     Tone.Transport.scheduleOnce(() => {
       metal.triggerAttackRelease("C3", 1);
     }, "+2");
@@ -272,7 +272,7 @@ logodiv.addEventListener('click', async () => {
     Tone.Transport.start();
   });
 
-  // Rest of the event listeners remain the same
+
   colldiv.querySelectorAll('p').forEach(p => {
       p.addEventListener('click', () => {
           currentCollection = p.innerText;
