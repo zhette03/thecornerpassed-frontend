@@ -46,7 +46,7 @@ body, html {
   border: solid 20px white;
 }
 
-/* Left side: navigation - now with flex-direction column for rows */
+
 #navdiv {
   width: 50vw;
   display: flex;
@@ -57,7 +57,7 @@ body, html {
   height: 100vh;
 }
 
-/* Top row container for the 4 navigation columns */
+
 #topnav {
   display: flex;
   flex: 1;
@@ -73,7 +73,7 @@ body, html {
   position: relative;
 }
 
-/* Centered state for logo */
+
 #logodiv.centered {
   position: fixed;
   top: 50%;
@@ -84,7 +84,7 @@ body, html {
 }
 
 
-/* Divide top nav into columns */
+
 #colldiv, #typediv, #photodiv {
   flex: 1;
   padding: 20px;
@@ -104,7 +104,7 @@ p:hover {
   text-decoration: none;
 }
 
-/* Bottom row - description div */
+
 #descriptiondiv {
   flex: 1;
   padding: 30px;
@@ -139,7 +139,7 @@ p:hover {
   overflow-wrap: break-word;
 }
 
-/* Right side: images */
+
 #imagediv {
   margin-left: 50vw;
   width: 50vw;
@@ -153,7 +153,7 @@ p:hover {
   visibility: hidden;
 }
 
-/* Navigation arrows */
+
 .modal-nav-arrows {
   position: absolute;
   top: 50%;
@@ -179,7 +179,7 @@ p:hover {
   right: -10vw;
 }
 
-/* Optional image styling */
+
 #imagediv img {
   max-width: 100%;
   margin-bottom: 20px;
@@ -234,7 +234,7 @@ p:hover {
 .modal-prev-arrow::after { content: '⟵'; }
 .modal-next-arrow::after { content: '⟶'; }
 
-/* Hide navigation initially */
+
 .nav-hidden #colldiv,
 .nav-hidden #typediv,
 .nav-hidden #photodiv {
