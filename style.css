@@ -28,6 +28,7 @@ body, html {
 }
 
 
+
 #logo {
   width: 120px;
   height: auto;   
@@ -62,7 +63,6 @@ body, html {
   display: flex;
   align-items: flex-start;
   flex: 1;
-
 }
 
 #logodiv {
@@ -93,7 +93,7 @@ body, html {
   box-sizing: border-box;
   align-content: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   visibility: hidden;
 }
 
