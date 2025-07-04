@@ -13,15 +13,9 @@ window.onload = function () {
 
     const synths = [
     new Tone.Synth({ oscillator: { type: "sine" }, envelope: { attack: 0.1, decay: 0.2, sustain: 0.3, release: 0.4 } }),
-    new Tone.Synth({ oscillator: { type: "sine", modulationType: "sawtooth", modulation: 0.5 }, envelope: { attack: 0.2, decay: 0.3, sustain: 0.4, release: 0.5 } }),
-    new Tone.Synth({ oscillator: { type: "triangle" }, envelope: { attack: 0.5, decay: 0.6, sustain: 0.7, release: 0.8 } }),
-    new Tone.Synth({ oscillator: { type: "triangle", modulationType: "sine", modulation: 0.5 }, envelope: { attack: 0.6, decay: 0.7, sustain: 0.8, release: 0.9 } }),
-    new Tone.Synth({ oscillator: { type: "pwm", modulationFrequency: 0.2 }, envelope: { attack: 1.1, decay: 1.2, sustain: 0.4, release: 1.4 } }),
-    new Tone.Synth({ oscillator: { type: "sine", modulationType: "triangle", modulation: 0.7 }, envelope: { attack: 1.2, decay: 1.3, sustain: 0.2, release: 1.5 } }),
-    new Tone.FMSynth({ modulationIndex: 2, carrier: { type: "sine" }, modulator: { type: "square" } }),
+    new Tone.Synth({ oscillator: { type: "sine", modulationType: "triangle", modulation: 0.7 }, envelope: { attack: 1.2, decay: 1.3, sustain: 0.2, release: 0.5 } }),
     new Tone.AMSynth({ harmonicity: 1.2, carrier: { type: "triangle" }, modulator: { type: "sawtooth" } }),
-    new Tone.Synth({ oscillator: { type: "pwm", modulationFrequency: 0.3 }, envelope: { attack: 1.9, decay: 2.0, sustain: 0.1, release: 2.2 } }),
-    new Tone.Synth({ oscillator: { type: "sine", modulationType: "square", modulation: 1.2 }, envelope: { attack: 2.0, decay: 2.1, sustain: 0.2, release: 2.3 } })
+    new Tone.Synth({ oscillator: { type: "sine", modulationType: "square", modulation: 1.2 }, envelope: { attack: 2.0, decay: 2.1, sustain: 0.2, release: 0.8 } })
 ].map(synth => synth.toDestination());
 
 function playRandomHoverSynth() {
@@ -74,7 +68,18 @@ document.addEventListener('mouseover', (e) => {
                 },
                 SNET: {
                     types: ["Exhibition","Film", "Images"]
+                },
+                Press: {
+                    types: ["Office", "dna", "Paper"],
+                    Office: ["From LDN to NYC: Intimate Portraits of City Youth"],
+                    dna: ["Spectral Bonds"],
+                    Paper:  ["Oklou Comes Back to Earth"]
+                },
+                Info: {
+                    types: ["About", "Contact"],
                 }
+
+                
             };
             
 const descriptions = {
@@ -91,6 +96,12 @@ const descriptions = {
   "Film": "Director– Louis F. Cota<br> Creative Directors– Jordan Perdomo, Louis F Cota<br> Brand Designer– Jordan Perdomo<br> Executive Producer– Jordan Perdomo<br> Producer– Chandni Amira Dhanoa<br> Production Assistant– Brandon Salinas<br> Set Design– Chandni Amira Dhanoa<br> Styling– Miracle<br> Casting Director– Dax Reedy <br>Talent– Ava Anita, Peezy<br> On-set photographer– Louis F. Cota ",
   "Images": "Director– Louis F. Cota<br> Creative Directors– Jordan Perdomo, Louis F Cota<br> Brand Designer– Jordan Perdomo<br> Executive Producer– Jordan Perdomo<br> Producer– Chandni Amira Dhanoa<br> Production Assistant– Brandon Salinas<br> Set Design– Chandni Amira Dhanoa<br> Styling– Miracle<br> Casting Director– Dax Reedy <br>Talent– Ava Anita, Peezy<br> On-set photographer– Louis F. Cota ",
   "Exhibition": "​​snet [2025] a TCP short film directed by Louis F Cota in collaboration with Jordan Perdomo - Displayed at xpan.ep.t [paris.25] - Opened to the public from 01/15 to 01/30 2025 at [20 pass. saint-sébastien 75011, Paris, France 48.861666, 2.36939]",
+  "From LDN to NYC: Intimate Portraits of City Youth": "https://officemagazine.net/ldn-nyc-intimate-portraits-city-youth",
+  "Spectral Bonds": "https://dnamag.mx/spectral-bonds/",
+  "Oklou Comes Back to Earth": "https://www.papermag.com/oklou-choke-enough-album#rebelltitem2",
+  "About": "Prospection according to space.<br><br> A project by Jordan Perdomo.",
+  "Contact": "thecornerpassed@gmail.com<br>@_tcp_tcp_"
+
 };
 const imageSets = {
   "GG Kim": ["https://res.cloudinary.com/djdu9iqeu/image/upload/IMG_0363_2_Large_utp3sy.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276784/IMG_0365_Large_sxcpmu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276783/IMG_0371_Large_hgje6i.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276783/IMG_0378_Large_o85wdb.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276820/IMG_0386_Large_m2l4ix.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276822/IMG_0444_Large_gwbobh.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0453_Large_io0bwo.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0461_Large_ajd5m9.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0476_Large_iigmhe.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276825/IMG_0480_Large_bdvefv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0506_Large_idgsvf.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0513_Large_ccjkff.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0519_Large_trb5d6.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0553_Large_gw03l0.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0567_Large_oerdk8.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0606_Large_egbvpz.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0595_Large_l9oybx.png"],
@@ -104,9 +115,49 @@ const imageSets = {
   "Ocean Adamovich Ortiz": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279149/IMG_1028_zfch9c.jpg", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279152/IMG_1103_qdrhph.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279152/IMG_1122_dvttjk.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279153/IMG_1190_skv48n.jpg"],
   "Louis F. Cota***": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279317/_MG_8469_rpirwq.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279562/4_copy_Large_xrwiu4.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279569/Screen_Shot_2023-12-28_at_4.19.49_PM_copy_dvkb8h.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279571/Screen_Shot_2023-12-28_at_4.22.04_PM_copy_ss1ixz.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279573/Screen_Shot_2023-12-28_at_4.22.56_PM_copy2_nprakb.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279574/Screen_Shot_2023-12-28_at_4.23.55_PM_copy_f1agez.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279574/TCPLFC001_3copy_Large_rjjk2v.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279575/TCPLFC002_Large_r2ydqr.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279576/TCPLFC005_Large_ct2zf1.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279868/TCPLFC008_Large_dtten0.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279880/TCPLFC025_Large_fkjs5x.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279883/TCPLFC00144_copy_tafdsv.jpg"],
   "Film": ["https://res.cloudinary.com/djdu9iqeu/video/upload/v1748283799/SNETFILM_1_mq2t7g.mp4"],
-  "Images": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281346/_MG_5780_Large_rg5dct.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281348/_MG_5836_Large_n3d4jm.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281350/_MG_5863_2_Large_buh9fr.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281354/_MG_5883_jvxtbz.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281355/_MG_6182_Large_agsz1z.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281359/Screenshot_2025-01-24_at_2.07.36_PM_izwsv1.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281363/Screenshot_2025-01-24_at_2.08.57_PM_pv5t46.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281362/snet.tcp001_Large_qlfulm.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281402/snet.tcp0022_zkh6zm.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281399/snet.tcp0023_naahsu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281397/snet.tcp0021_v5aeng.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281392/snet.tcp0018_Large_dsncvs.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281390/snet.tcp0017_Large_cnxnmv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281389/snet.tcp0013_inleak.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281388/snet.tcp0015_Large_tnhpxv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281383/snet.tcp0012_xopsgo.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281383/snet.tcp0012_xopsgo.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281381/snet.tcp0011_wztmi1.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281380/snet.tcp009_zvpxra.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281379/snet.tcp0010_t5tter.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281377/snet.tcp008_nleht9.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281372/snet.tcp007_Large_v347xg.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281370/snet.tcp005_Large_brd30b.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281368/snet.tcp004_Large_ljk1fu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281365/snet.tcp003_Large_tn11bs.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281363/snet.tcp002_Large_moiuet.png",""],
+  "Images": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281346/_MG_5780_Large_rg5dct.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281348/_MG_5836_Large_n3d4jm.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281350/_MG_5863_2_Large_buh9fr.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281354/_MG_5883_jvxtbz.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281355/_MG_6182_Large_agsz1z.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281359/Screenshot_2025-01-24_at_2.07.36_PM_izwsv1.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281363/Screenshot_2025-01-24_at_2.08.57_PM_pv5t46.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281362/snet.tcp001_Large_qlfulm.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281402/snet.tcp0022_zkh6zm.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281399/snet.tcp0023_naahsu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281397/snet.tcp0021_v5aeng.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281392/snet.tcp0018_Large_dsncvs.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281390/snet.tcp0017_Large_cnxnmv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281389/snet.tcp0013_inleak.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281388/snet.tcp0015_Large_tnhpxv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281383/snet.tcp0012_xopsgo.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281381/snet.tcp0011_wztmi1.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281380/snet.tcp009_zvpxra.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281379/snet.tcp0010_t5tter.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281377/snet.tcp008_nleht9.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281372/snet.tcp007_Large_v347xg.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281370/snet.tcp005_Large_brd30b.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281368/snet.tcp004_Large_ljk1fu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281365/snet.tcp003_Large_tn11bs.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281363/snet.tcp002_Large_moiuet.png",""],
   "Exhibition": ["https://res.cloudinary.com/djdu9iqeu/video/upload/v1748282177/IMG_0576_aenixq.mov","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281857/_DSF1144_bnndef.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281859/002_mq3pyp.jpg"]
 };
+
+const longDescriptions = [
+  'GG Kim',
+  'Louis F. Cota',
+  'Louis F. Cota**'
+];
+
+function updateDescription(key) {
+  console.log('description key:', key);
+
+  const descP = document.getElementById('descp');
+  if (descriptions[key]) {
+    descP.innerHTML = descriptions[key];
+
+    // Define the longer descriptions that need to be scrollable from the top
+    const longDescriptions = [
+      'GG Kim',
+      'Louis F. Cota',
+      'Louis F. Cota**'
+    ];
+
+    // Check if this is a long description
+    const isLongDescription = longDescriptions.includes(key);
+    
+    if (isLongDescription) {
+      // For long descriptions, keep container at flex-end but allow scrolling from top
+      descriptiondiv.style.alignItems = 'flex-end';
+      descriptiondiv.style.justifyContent = 'flex-start'; // This allows scrolling from top
+      descP.style.marginTop = 'auto'; // This pushes content to bottom when it doesn't overflow
+    } else {
+      // For short descriptions, align to bottom
+      descriptiondiv.style.alignItems = 'flex-end';
+      descriptiondiv.style.justifyContent = 'flex-end';
+      descP.style.marginTop = '0'; // Reset margin
+    }
+    
+    descriptiondiv.style.visibility = 'visible';
+  }
+}
+
 function showModalImage(index) {
   if (currentImages.length === 0) return;
   modalImageIndex = index;
@@ -243,28 +294,13 @@ modal.onclick = function(event) {
     }
 };
 
-function updateDescription(key) {
-  console.log('description key:', key);
-
-  const descP = document.getElementById('descp');
-  if (descriptions[key]) {
-    descP.innerHTML = descriptions[key];
-
-    const topAligned = [
-      'SS26, Lookbook, GG Kim',
-      'SS25, Lookbook, Louis F Cota',
-      'FW24, Lookbook, Louis F Cota'
-    ];
-
-    const shouldAlignTop = topAligned.some(match => key.startsWith(match));
-    descriptiondiv.style.alignItems = shouldAlignTop ? 'flex-start' : 'flex-end';
-    descriptiondiv.style.visibility = 'visible';
-  }
-}
 function hideDescription() {
-    descriptiondiv.style.visibility = 'hidden';
-
-    descriptiondiv.style.alignItems = 'flex-start';
+  descriptiondiv.style.visibility = 'hidden';
+  // Reset styles when hiding
+  descriptiondiv.style.alignItems = 'flex-end';
+  descriptiondiv.style.justifyContent = 'flex-end';
+  const descP = document.getElementById('descp');
+  descP.style.marginTop = '0';
 }
 
 let logoClicked = false;
@@ -291,27 +327,22 @@ logodiv.addEventListener('click', async () => {
   volume.volume.linearRampToValueAtTime(1, Tone.now() + 2);
   synth.triggerAttackRelease("E4", 2);
 
-  const metal = new Tone.MetalSynth({
-    frequency: 200,
-    envelope: {
-      attack: 0.001,
-      decay: 0.2,
-      release: 0.1
-    },
-    harmonicity: 2.1,
-    modulationIndex: 32,
-    resonance: 4000,
-    octaves: 3.5
+  const metal = new Tone.AMSynth({
+    harmonicity: 0.6,
+    carrier: { type: "triangle" },
+    modulator: { type: "sawtooth" }
   }).toDestination();
-
+  
   Tone.Transport.scheduleOnce(() => {
-    metal.triggerAttackRelease("C3", 1);
+    synth.triggerAttackRelease("C5", 0.1);
   }, "+2");
+  
   Tone.Transport.start();
+  
 
   document.body.addEventListener('click', async () => {
     await Tone.start();
-    metal.triggerAttackRelease("C3", 1);
+    metal.triggerAttackRelease("C5", 0.1);
   });
   setTimeout(() => {
     logodiv.classList.remove('centered');
