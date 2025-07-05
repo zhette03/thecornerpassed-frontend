@@ -27,7 +27,14 @@ body, html {
   background: yellow;
 }
 
+#descriptiondiv a {
+  color: inherit;
+  text-decoration: none;
+}
 
+#descriptiondiv a:hover {
+  text-decoration: overline;
+}
 
 #logo {
   width: 120px;
