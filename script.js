@@ -75,9 +75,10 @@ document.addEventListener('mouseover', (e) => {
                     dna: ["Spectral Bonds"],
                     Paper:  ["Oklou Comes Back to Earth"]
                 },
-                Info: {
+                  Info: {
                     types: ["About", "Contact"],
-                }
+                  }
+                  
 
                 
             };
@@ -96,11 +97,11 @@ const descriptions = {
   "Film": "Director– Louis F. Cota<br> Creative Directors– Jordan Perdomo, Louis F Cota<br> Brand Designer– Jordan Perdomo<br> Executive Producer– Jordan Perdomo<br> Producer– Chandni Amira Dhanoa<br> Production Assistant– Brandon Salinas<br> Set Design– Chandni Amira Dhanoa<br> Styling– Miracle<br> Casting Director– Dax Reedy <br>Talent– Ava Anita, Peezy<br> On-set photographer– Louis F. Cota ",
   "Images": "Director– Louis F. Cota<br> Creative Directors– Jordan Perdomo, Louis F Cota<br> Brand Designer– Jordan Perdomo<br> Executive Producer– Jordan Perdomo<br> Producer– Chandni Amira Dhanoa<br> Production Assistant– Brandon Salinas<br> Set Design– Chandni Amira Dhanoa<br> Styling– Miracle<br> Casting Director– Dax Reedy <br>Talent– Ava Anita, Peezy<br> On-set photographer– Louis F. Cota ",
   "Exhibition": "​​snet [2025] a TCP short film directed by Louis F Cota in collaboration with Jordan Perdomo - Displayed at xpan.ep.t [paris.25] - Opened to the public from 01/15 to 01/30 2025 at [20 pass. saint-sébastien 75011, Paris, France 48.861666, 2.36939]",
-  "From LDN to NYC: Intimate Portraits of City Youth": "https://officemagazine.net/ldn-nyc-intimate-portraits-city-youth",
-  "Spectral Bonds": "https://dnamag.mx/spectral-bonds/",
-  "Oklou Comes Back to Earth": "https://www.papermag.com/oklou-choke-enough-album#rebelltitem2",
+  "From LDN to NYC: Intimate Portraits of City Youth": '<a href="https://officemagazine.net/ldn-nyc-intimate-portraits-city-youth" target="_blank">https://officemagazine.net/ldn-nyc-intimate-portraits-city-youth</a>',
+  "Spectral Bonds": '<a href="https://dnamag.mx/spectral-bonds/" target="_blank">https://dnamag.mx/spectral-bonds/</a>',
+  "Oklou Comes Back to Earth":'<a href="https://www.papermag.com/oklou-choke-enough-album#rebelltitem2" target="_blank">https://www.papermag.com/oklou-choke-enough-album#rebelltitem2</a>',
   "About": "Prospection according to space.<br><br> A project by Jordan Perdomo.",
-  "Contact": "thecornerpassed@gmail.com<br>@_tcp_tcp_"
+  "Contact": "thecornerpassed@gmail.com<br><br>@_tcp_tcp_", 
 
 };
 const imageSets = {
@@ -116,7 +117,10 @@ const imageSets = {
   "Louis F. Cota***": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279317/_MG_8469_rpirwq.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279562/4_copy_Large_xrwiu4.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279569/Screen_Shot_2023-12-28_at_4.19.49_PM_copy_dvkb8h.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279571/Screen_Shot_2023-12-28_at_4.22.04_PM_copy_ss1ixz.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279573/Screen_Shot_2023-12-28_at_4.22.56_PM_copy2_nprakb.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279574/Screen_Shot_2023-12-28_at_4.23.55_PM_copy_f1agez.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279574/TCPLFC001_3copy_Large_rjjk2v.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279575/TCPLFC002_Large_r2ydqr.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279576/TCPLFC005_Large_ct2zf1.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279868/TCPLFC008_Large_dtten0.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279880/TCPLFC025_Large_fkjs5x.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748279883/TCPLFC00144_copy_tafdsv.jpg"],
   "Film": ["https://res.cloudinary.com/djdu9iqeu/video/upload/v1748283799/SNETFILM_1_mq2t7g.mp4"],
   "Images": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281346/_MG_5780_Large_rg5dct.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281348/_MG_5836_Large_n3d4jm.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281350/_MG_5863_2_Large_buh9fr.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281354/_MG_5883_jvxtbz.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281355/_MG_6182_Large_agsz1z.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281359/Screenshot_2025-01-24_at_2.07.36_PM_izwsv1.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281363/Screenshot_2025-01-24_at_2.08.57_PM_pv5t46.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281362/snet.tcp001_Large_qlfulm.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281402/snet.tcp0022_zkh6zm.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281399/snet.tcp0023_naahsu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281397/snet.tcp0021_v5aeng.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281392/snet.tcp0018_Large_dsncvs.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281390/snet.tcp0017_Large_cnxnmv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281389/snet.tcp0013_inleak.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281388/snet.tcp0015_Large_tnhpxv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281383/snet.tcp0012_xopsgo.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281381/snet.tcp0011_wztmi1.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281380/snet.tcp009_zvpxra.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281379/snet.tcp0010_t5tter.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281377/snet.tcp008_nleht9.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281372/snet.tcp007_Large_v347xg.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281370/snet.tcp005_Large_brd30b.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281368/snet.tcp004_Large_ljk1fu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281365/snet.tcp003_Large_tn11bs.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281363/snet.tcp002_Large_moiuet.png",""],
-  "Exhibition": ["https://res.cloudinary.com/djdu9iqeu/video/upload/v1748282177/IMG_0576_aenixq.mov","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281857/_DSF1144_bnndef.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281859/002_mq3pyp.jpg"]
+  "Exhibition": ["https://res.cloudinary.com/djdu9iqeu/video/upload/v1748282177/IMG_0576_aenixq.mov","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281857/_DSF1144_bnndef.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748281859/002_mq3pyp.jpg"],
+  "From LDN to NYC: Intimate Portraits of City Youth": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739613/alex_josie_4_tcufkt.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739613/iris_parker_3_c2tx9c.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739613/alex_josie_2_qblvqf.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739612/iris_parker_2_tgo084.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739610/alex_josie_3_uvm78d.jpg"],
+  "Spectral Bonds": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1751741566/Copy_of_Untitled_Capture15752_q4msrm.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751741565/Copy_of_Untitled_Capture15677_wypvha.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751741565/Copy_of_Untitled_Capture15816_ewdtyn.jpg"],
+  "Oklou Comes Back to Earth": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739715/img.jpg_dmtz6l.webp","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739715/img.jpg-2_h4ezw4.webp"],
 };
 
 const longDescriptions = [
@@ -368,82 +372,89 @@ colldiv.querySelectorAll('p').forEach(p => {
                 typeP.innerText = type;
                 typediv.appendChild(typeP);
 
-                typeP.addEventListener('click', () => {
-                    currentType = type;
-                    photodiv.innerHTML = '';
-                    imagediv.innerHTML = '';
-                    imagediv.style.visibility = 'hidden';
-                    hideDescription();
-                    currentImages = [];
-                    if (currentCollection === "SNET") {
-                        const images = imageSets[type];
-                        if (images && images.length > 0) {
-                            currentImages = images;
-                            updateDescription(type);
-                            images.forEach(src => {
-                                const fileExt = src.split('.').pop().toLowerCase();
-                                if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
-                                    const video = document.createElement('video');
-                                    video.src = src;
-                                    video.controls = true;
-                                    video.style.maxWidth = '100%';
-                                    video.style.marginBottom = '20px';
-                                    video.autoplay = false;
-                                    imagediv.appendChild(video);
-                                } else {
-                                    const img = document.createElement('img');
-                                    img.src = src;
-                                    img.alt = type;
-                                    img.style.maxWidth = '100%';
-                                    img.style.marginBottom = '20px';
-                                    img.addEventListener('click', () => openModal(src));
-                                    imagediv.appendChild(img);
-                                }
-                            });
-                            imagediv.style.visibility = 'visible';
-                        }
-                    } else {
-                        const names = data[currentCollection][type];
-                        if (names) {
-                          names.forEach(name => {
-                              const nameP = document.createElement('p');
-                              nameP.innerText = cleanPhotographerName(name);
-                              photodiv.appendChild(nameP);
-                              nameP.addEventListener('click', () => {
-                                const images = imageSets[name];
-                                imagediv.innerHTML = '';
-                                updateDescription(name);
-                                if (images && images.length > 0) {
-                                  currentImages = images;
-                                  images.forEach(src => {
-                                    const fileExt = src.split('.').pop().toLowerCase();
-                                    if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
-                                      const video = document.createElement('video');
-                                      video.src = src;
-                                      video.controls = false;
-                                      video.style.maxWidth = '100%';
-                                      video.style.marginBottom = '20px';
-                                      video.autoplay = true;
-                                      imagediv.appendChild(video);
-                                    } else {
-                                      const img = document.createElement('img');
-                                      img.src = src;
-                                      img.alt = name;
-                                      img.style.maxWidth = '100%';
-                                      img.style.marginBottom = '20px';
-                                      img.addEventListener('click', () => openModal(src));
-                                      imagediv.appendChild(img);
-                                    }
-                                  });
-                                  imagediv.style.visibility = 'visible';
-                                }
-                              });
-                            });
-                            photodiv.style.visibility = 'visible';
-                        }
-                    }
+               // Find this section in your code and replace the typeP.addEventListener('click', () => { section:
+
+typeP.addEventListener('click', () => {
+  currentType = type;
+  photodiv.innerHTML = '';
+  imagediv.innerHTML = '';
+  imagediv.style.visibility = 'hidden';
+  hideDescription();
+  currentImages = [];
+  
+  if (currentCollection === "SNET") {
+      const images = imageSets[type];
+      if (images && images.length > 0) {
+          currentImages = images;
+          updateDescription(type);
+          images.forEach(src => {
+              const fileExt = src.split('.').pop().toLowerCase();
+              if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+                  const video = document.createElement('video');
+                  video.src = src;
+                  video.controls = true;
+                  video.style.maxWidth = '100%';
+                  video.style.marginBottom = '20px';
+                  video.autoplay = false;
+                  imagediv.appendChild(video);
+              } else {
+                  const img = document.createElement('img');
+                  img.src = src;
+                  img.alt = type;
+                  img.style.maxWidth = '100%';
+                  img.style.marginBottom = '20px';
+                  img.addEventListener('click', () => openModal(src));
+                  imagediv.appendChild(img);
+              }
+          });
+          imagediv.style.visibility = 'visible';
+      }
+  } else if (currentCollection === "Info") {
+      // Handle Info items (About, Contact) - show description directly
+      updateDescription(type);
+  } else {
+      const names = data[currentCollection][type];
+      if (names) {
+          names.forEach(name => {
+              const nameP = document.createElement('p');
+              nameP.innerText = cleanPhotographerName(name);
+              photodiv.appendChild(nameP);
+              nameP.addEventListener('click', () => {
+                  const images = imageSets[name];
+                  imagediv.innerHTML = '';
+                  updateDescription(name);
+                  if (images && images.length > 0) {
+                      currentImages = images;
+                      images.forEach(src => {
+                          const fileExt = src.split('.').pop().toLowerCase();
+                          if (['mp4', 'mov', 'webm', 'ogg'].includes(fileExt)) {
+                              const video = document.createElement('video');
+                              video.src = src;
+                              video.controls = false;
+                              video.style.maxWidth = '100%';
+                              video.style.marginBottom = '20px';
+                              video.autoplay = true;
+                              imagediv.appendChild(video);
+                          } else {
+                              const img = document.createElement('img');
+                              img.src = src;
+                              img.alt = name;
+                              img.style.maxWidth = '100%';
+                              img.style.marginBottom = '20px';
+                              img.addEventListener('click', () => openModal(src));
+                              imagediv.appendChild(img);
+                          }
+                      });
+                      imagediv.style.visibility = 'visible';
+                  }
+              });
+          });
+          photodiv.style.visibility = 'visible';
+      }
+  }
+});
                 });
-            });
+            
             typediv.style.visibility = 'visible';
         }
     });
