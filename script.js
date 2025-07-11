@@ -75,9 +75,12 @@ document.addEventListener('mouseover', (e) => {
                     dna: ["Spectral Bonds"],
                     Paper:  ["Oklou Comes Back to Earth"]
                 },
+                Stockist: {
+                  types: ["WiG","Retail Pharmacy","APOC Store"]
+                },
                   Info: {
                     types: ["About", "Contact"],
-                  }
+                }
                   
 
                 
@@ -102,7 +105,9 @@ const descriptions = {
   "Oklou Comes Back to Earth":'<a href="https://www.papermag.com/oklou-choke-enough-album#rebelltitem2" target="_blank">https://www.papermag.com/oklou-choke-enough-album#rebelltitem2</a>',
   "About": "Prospection according to space.<br><br> A project by Jordan Perdomo.",
   "Contact": "thecornerpassed@gmail.com<br><br>@_tcp_tcp_", 
-
+  "WiG": "Barcelona 8, Juarez, CDMX, Mexico.<br><br>https://www.instagram.com/____wig____/<br>www.wig.mx",
+  "Retail Pharmacy": "39 A Henry St., New York, New York 10002<br><br>https://www.instagram.com/retail_pharmacy/<br>www.retail-pharmacy.com",
+  "APOC Store":"Unit 41, Regent Studios, 8 Andrews Road, London Fields, London E8<br><br>https://www.instagram.com/apocstore/<br>https://apoc-store.com/",
 };
 const imageSets = {
   "GG Kim": ["https://res.cloudinary.com/djdu9iqeu/image/upload/IMG_0363_2_Large_utp3sy.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276784/IMG_0365_Large_sxcpmu.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276783/IMG_0371_Large_hgje6i.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276783/IMG_0378_Large_o85wdb.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276820/IMG_0386_Large_m2l4ix.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276822/IMG_0444_Large_gwbobh.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0453_Large_io0bwo.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0461_Large_ajd5m9.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0476_Large_iigmhe.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276825/IMG_0480_Large_bdvefv.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0506_Large_idgsvf.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276824/IMG_0513_Large_ccjkff.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0519_Large_trb5d6.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0553_Large_gw03l0.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0567_Large_oerdk8.png", "https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0606_Large_egbvpz.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1748276827/IMG_0595_Large_l9oybx.png"],
@@ -411,6 +416,9 @@ typeP.addEventListener('click', () => {
       }
   } else if (currentCollection === "Info") {
       // Handle Info items (About, Contact) - show description directly
+      updateDescription(type);
+    } else if (currentCollection === "Stockist") {
+      // Handle Stockist items - show description directly
       updateDescription(type);
   } else {
       const names = data[currentCollection][type];
