@@ -357,3 +357,20 @@ p:hover {
   right: 0;        /* when you toggle the “open” class */
 }
 
+/* 1) All “pointer” elements get your black‑logo cursor */
+button,
+a,
+[role="button"],
+.clickable,
+*[style*="cursor: pointer"] {
+  cursor: url("CURSORTCPB.png"), auto !important;
+}
+
+/* 2) On hover (every time), swap to your yellow‑logo cursor */
+button:hover,
+a:hover,
+[role="button"]:hover,
+.clickable:hover,
+*[style*="cursor: pointer"]:hover {
+  cursor: url("CURSORTCPYELLO.png"), auto !important;
+}
