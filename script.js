@@ -1,3 +1,4 @@
+
 window.onload = function () {
   // ---- Element references ----
   const logodiv = document.getElementById('logodiv');
