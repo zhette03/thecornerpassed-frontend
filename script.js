@@ -355,7 +355,9 @@ const query = `
             <p>Price:</strong> ${priceFmt}</p>`;
 
 // ─── reset state ───
+
 let selectedColor   = null;
+let colorChosen  = false;   // only true once user clicks
 let selectedSize    = null;
 let selectedVariant = null;
 
@@ -453,37 +455,57 @@ btn.addEventListener('mouseleave', () => {
 });
   
 
-  // click → pick color & redraw sizes
-  btn.addEventListener('click', () => {
-
-    colorBtnDiv.querySelectorAll('button.clicked').forEach(b => b.classList.remove('clicked'));
-
-    // mark this one as actually clicked
-    btn.classList.add('clicked');
-    selectedColor = color;
-    // 0) clear old size choice so Add‑to‑Cart goes back to “Select a size”
-    selectedSize    = null;
-    selectedVariant = null;
-  
-    selectedColor = color;
-    // reset all color buttons…
-    Array.from(colorBtnDiv.children).forEach(b => {
-      b.style.background = 'white';
-      b.style.color      = 'black';
-    });
-    btn.style.background = 'black';
-    btn.style.color      = 'white';
-  
-    // now re‑render the size buttons and reset the Add button
-    renderSizeOptions();
-    setupAddButton();
-  
-    // and update the images
-    renderImagesForColor();
+btn.addEventListener('click', () => {
+  // clear any previous “clicked” styling
+  colorBtnDiv.querySelectorAll('button').forEach(b => {
+    b.classList.remove('clicked');
+    b.style.background = 'white';
+    b.style.color      = 'black';
   });
+
+  // mark this one as clicked
+  btn.classList.add('clicked');
+  btn.style.background = 'black';
+  btn.style.color      = 'white';
+
+  // update state
+  selectedColor = color;
+  colorChosen   = true;
+
+  // re–render sizes
+  renderSizeOptions();
+
+  // if a size was already selected, re–highlight it and re–derive the variant
+  if (selectedSize) {
+    Array.from(sizeBtnDiv.children).forEach(b => {
+      if (b.textContent === selectedSize) {
+        b.style.background = 'black';
+        b.style.color      = 'white';
+      }
+    });
+    const matchEdge = prod.variants.edges.find(e => {
+      const opts = e.node.selectedOptions;
+      return opts.find(o => o.name === 'Color').value === selectedColor &&
+             opts.find(o => o.name === 'Size').value  === selectedSize;
+    });
+    if (matchEdge) selectedVariant = matchEdge.node;
+  }
+
+  // now update the Add‑to‑Cart button
+  setupAddButton();
+
+  // swap the images
+  renderImagesForColor();
+});
+
+
+  
 
   colorBtnDiv.appendChild(btn);
 });
+
+
+
 
 
 
@@ -567,6 +589,16 @@ function renderSizeOptions() {
 
     sizeBtnDiv.appendChild(btn);
   });
+  // if we already have a selectedSize, re‑style that button
+if (selectedSize) {
+  Array.from(sizeBtnDiv.children).forEach(b => {
+    if (b.textContent === selectedSize) {
+      b.style.background = 'black';
+      b.style.color      = 'white';
+    }
+  });
+}
+
 }
 
 
@@ -575,25 +607,26 @@ function renderSizeOptions() {
           // add‑to‑cart button
           const addButton = document.createElement('button');
           function setupAddButton(){
-            if (!selectedVariant) {
-              addButton.textContent = 'Select a Size';
+            // require both a real color‑click AND a size‑click
+            if (!colorChosen || !selectedSize) {
+              addButton.textContent = 'Select Options';
               addButton.disabled = true;
-              addButton.style.cssText = 'margin-top:15px;width:100%;padding:10px;background:#eee;color:#666;border:1px solid black;cursor:not-allowed;';
-              return; // ← prevent the rest of the function from running
+              addButton.style.cssText =
+                'margin-top:15px;width:100%;padding:10px;'
+                + 'background:#eee;color:#666;'
+                + 'border:1px solid black;cursor:not-allowed;';
+              return;
             }
-            // reset any old hover handlers
-            addButton.onmouseenter = null;
-            addButton.onmouseleave = null;
           
+            // once both are chosen, do your normal in‑stock check:
             addButton.textContent = selectedVariant.availableForSale ? 'Add to Cart' : 'SOLD OUT';
             addButton.disabled    = !selectedVariant.availableForSale;
             addButton.style.cssText = 'margin-top:15px;width:100%;padding:10px';
-
-            
-            
-            if ( selectedVariant.availableForSale ) {
-              // sale‑able state
-              addButton.style.cssText += ';background:white;color:black;border:1px solid black;cursor:pointer';
+          
+            if (selectedVariant.availableForSale) {
+              addButton.style.cssText +=
+                ';background:white;color:black;'
+                + 'border:1px solid black;cursor:pointer';
               addButton.onmouseenter = () => {
                 addButton.style.background = 'black';
                 addButton.style.color      = 'white';
@@ -603,12 +636,12 @@ function renderSizeOptions() {
                 addButton.style.color      = 'black';
               };
             } else {
-              // sold‑out state — no hover handlers, no pointer cursor
-              addButton.style.cssText += ';background:#eee;color:#666;border:1px solid black;cursor:not-allowed';
-              // onmouseenter/onmouseleave are already nulled above,
-              // so there won’t be any hover flip.
+              addButton.style.cssText +=
+                ';background:#eee;color:#666;'
+                + 'border:1px solid black;cursor:not-allowed';
             }
           }
+          
           descriptiondiv.appendChild(addButton);
           renderSizeOptions();
           

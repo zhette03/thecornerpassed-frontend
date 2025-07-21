@@ -374,3 +374,8 @@ a:hover,
 *[style*="cursor: pointer"]:hover {
   cursor: url("CURSORTCPYELLO.png"), auto !important;
 }
+
+/* turn off hover‑overlines inside the product description */
+#descriptiondiv p:hover {
+  text-decoration: none !important;
+}
