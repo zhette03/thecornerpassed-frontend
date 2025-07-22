@@ -844,6 +844,12 @@ else if (data[name]) {
     checkoutBtn.onmouseenter = () => checkoutBtn.style.cssText+='background:black;color:white;';
     checkoutBtn.onmouseleave = () => checkoutBtn.style.cssText+='background:white;color:black;';
     cartDrawer.appendChild(checkoutBtn);
+    const finalNote = document.createElement('p');
+finalNote.textContent = 'All Sales Final';
+finalNote.style.cssText =
+  'font-size:12px; text-align:center; margin-top:8px; color:#666;';
+cartDrawer.appendChild(finalNote);
+
   };
 
   window.removeFromCart = function(id) {
