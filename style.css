@@ -375,7 +375,9 @@ a:hover,
   cursor: url("CURSORTCPYELLO.png"), auto !important;
 }
 
-@media screen and (max-width: 700px) {
+/* Mobile Responsive Styles - Add these to your existing CSS */
+
+@media screen and (max-width: 768px) {
   
   /* Reset main layout for mobile */
   #maindiv {
@@ -391,6 +393,7 @@ a:hover,
     height: auto;
     position: static;
     flex: 0 0 auto;
+    border-bottom: 1px solid #ccc;
   }
 
   #topnav {
@@ -635,9 +638,4 @@ a:hover,
   #logo:hover {
     width: 65px;
   }
-}
-
-/* turn off hover‑overlines inside the product description */
-#descriptiondiv p:hover {
-  text-decoration: none !important;
 }
