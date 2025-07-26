@@ -375,6 +375,268 @@ a:hover,
   cursor: url("CURSORTCPYELLO.png"), auto !important;
 }
 
+@media screen and (max-width: 500px) {
+  
+  /* Reset main layout for mobile */
+  #maindiv {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border: 10px solid white; /* Reduced border for mobile */
+  }
+
+  /* Navigation becomes first row */
+  #navdiv {
+    width: 100vw;
+    height: auto;
+    position: static;
+    flex: 0 0 auto;
+  }
+
+  #topnav {
+    flex-direction: row;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+  }
+
+  /* Logo positioning for mobile */
+  #logodiv {
+    position: static;
+    transform: none;
+    flex: 0 0 auto;
+    padding: 10px;
+    text-align: left;
+  }
+
+  #logodiv.centered {
+    position: static;
+    transform: none;
+    z-index: auto;
+  }
+
+  #logo {
+    width: 80px;
+    height: auto;
+  }
+
+  #logo:hover {
+    width: 85px;
+  }
+
+  /* Navigation items in a row - squish together instead of wrapping */
+  #colldiv, #typediv, #photodiv {
+    visibility: visible;
+    padding: 5px;
+    flex: 1;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    align-items: flex-start;
+    min-width: 0; /* Allow shrinking */
+  }
+
+  #colldiv p, #typediv p, #photodiv p {
+    margin: 0;
+    white-space: nowrap;
+    font-size: 9pt;
+    flex-shrink: 1; /* Allow text to get smaller if needed */
+  }
+
+  /* Image div becomes second row with horizontal scroll */
+  #imagediv {
+    margin-left: 0;
+    width: 100vw;
+    height: 50vh; /* Takes up half the remaining space */
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 15px;
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    align-items: flex-start;
+    gap: 15px;
+    visibility: visible;
+  }
+
+  /* Images in horizontal scroll */
+  #imagediv img {
+    max-width: none;
+    width: auto;
+    height: calc(50vh - 60px); /* Fit within container height */
+    margin-bottom: 0;
+    margin-right: 15px;
+    flex-shrink: 0; /* Prevent images from shrinking */
+  }
+
+  /* Custom horizontal scrollbar for images */
+  #imagediv::-webkit-scrollbar {
+    height: 6px;
+    width: auto;
+  }
+
+  #imagediv::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  #imagediv::-webkit-scrollbar-thumb {
+    background: black;
+    min-width: 20px;
+    background-clip: content-box;
+  }
+
+  #imagediv::-webkit-scrollbar-thumb:hover {
+    background: yellow;
+  }
+
+  /* Description becomes third row */
+  #descriptiondiv {
+    width: 100vw;
+    height: auto;
+    min-height: 20vh; /* Minimum height to ensure content fits */
+    max-height: none; /* Remove height restriction to prevent overflow */
+    padding: 15px;
+    visibility: visible;
+    flex: 1; /* Allow it to grow as needed */
+    justify-content: flex-start;
+    border-top: 1px solid #ccc;
+  }
+
+  #descriptiondiv.align-top {
+    justify-content: flex-start;
+  }
+
+  #descp {
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+
+  /* Product cards for mobile */
+  #imagediv .product-card {
+    min-width: 150px;
+    max-width: 150px;
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+
+  /* Modal adjustments for mobile */
+  .modal-content img {
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+
+  .modal-prev-arrow {
+    left: 10px;
+  }
+
+  .modal-next-arrow {
+    right: 10px;
+  }
+
+  .custom-arrow {
+    width: 20px !important;
+  }
+
+  .close {
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+  }
+
+  /* Cart drawer adjustments */
+  #cartDrawer {
+    width: 280px;
+    padding: 15px;
+  }
+
+  /* Typography wrapper adjustments */
+  #typediv-wrapper {
+    gap: 20px;
+  }
+
+  /* Reduce body padding */
+  body, html {
+    padding-left: 10px;
+    font-size: 9pt;
+  }
+
+  /* Hide some elements that might not be needed on mobile */
+  .nav-hidden #colldiv,
+  .nav-hidden #typediv,
+  .nav-hidden #photodiv {
+    visibility: visible; /* Override for mobile */
+  }
+}
+
+/* Tablet and smaller desktop adjustments */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  #maindiv {
+    border: 15px solid white;
+  }
+  
+  body, html {
+    padding-left: 15px;
+  }
+}
+
+/* Very small mobile devices */
+@media screen and (max-width: 480px) {
+  #maindiv {
+    border: 5px solid white;
+  }
+
+  body, html {
+    padding-left: 5px;
+    font-size: 8pt;
+  }
+
+  #topnav {
+    padding: 5px;
+  }
+
+  #colldiv, #typediv, #photodiv {
+    padding: 3px;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  #colldiv p, #typediv p, #photodiv p {
+    font-size: 8pt;
+    flex-shrink: 1;
+  }
+
+  #imagediv {
+    padding: 10px;
+    height: 45vh;
+  }
+
+  #imagediv img {
+    height: calc(45vh - 40px);
+    margin-right: 10px;
+  }
+
+  #descriptiondiv {
+    padding: 10px;
+    min-height: 25vh;
+    max-height: none;
+    flex: 1;
+  }
+
+  #descp {
+    font-size: 8pt;
+  }
+
+  #logo {
+    width: 60px;
+  }
+
+  #logo:hover {
+    width: 65px;
+  }
+}
+
 /* turn off hover‑overlines inside the product description */
 #descriptiondiv p:hover {
   text-decoration: none !important;
