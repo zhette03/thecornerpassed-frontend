@@ -463,7 +463,6 @@ a:hover,
     height: auto;
     position: static;
     flex: 0 0 auto;
-    border-bottom: 1px solid #ccc;
   }
 
   #topnav {
@@ -492,12 +491,12 @@ a:hover,
   }
 
   #logo {
-    width: 50px;
+    width: 30px;
     height: auto;
   }
 
   #logo:hover {
-    width: 85px;
+    width: 45px;
   }
 
   /* Navigation items stay vertical but squish together */
@@ -574,7 +573,6 @@ a:hover,
     visibility: visible;
     flex: 1; /* Allow it to grow as needed */
     justify-content: flex-start;
-    border-top: 1px solid #ccc;
     box-sizing: border-box;
     overflow-x: hidden; /* Prevent horizontal overflow */
   }
@@ -588,7 +586,7 @@ a:hover,
     line-height: 1.4;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    max-width: 90%;
+    max-width: 85%;
     box-sizing: border-box;
   }
 
@@ -698,7 +696,7 @@ a:hover,
 
   #descriptiondiv {
     padding: 10px;
-    min-height: 25vh;
+    min-height: 5vh;
     max-height: none;
     flex: 1;
   }
