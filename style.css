@@ -60,7 +60,7 @@ body, html {
 #maindiv {
   display: flex;
   height: 100vh;
-  border: solid 20px white;
+
 }
 
 
@@ -454,7 +454,7 @@ a:hover,
     display: flex;
     flex-direction: column;
     height: 100vh;
-    border: 10px solid white; /* Reduced border for mobile */
+   
   }
 
   /* Navigation becomes first row */
@@ -650,7 +650,6 @@ a:hover,
 /* Tablet and smaller desktop adjustments */
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   #maindiv {
-    border: 15px solid white;
   }
   
   body, html {
@@ -661,7 +660,7 @@ a:hover,
 /* Very small mobile devices */
 @media screen and (max-width: 480px) {
   #maindiv {
-    border: 5px solid white;
+
   }
 
   body, html {
