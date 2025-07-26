@@ -695,9 +695,10 @@ a:hover,
 
   #descriptiondiv {
     padding: 10px;
-    min-height: 5vh;
-    max-height: none;
+    min-height: 10vh;
+    max-height: 25vh;
     flex: 1;
+    overflow: scroll;
   }
 
   #descp {
