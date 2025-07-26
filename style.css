@@ -375,7 +375,77 @@ a:hover,
   cursor: url("CURSORTCPYELLO.png"), auto !important;
 }
 
+/* turn off hover‑overlines inside the product description */
+#descriptiondiv p:hover {
+  text-decoration: none !important;
+}
+
+
+
+
 /* Mobile Responsive Styles - Add these to your existing CSS */
+
+/* Intermediate screen sizes - prevent overlay before mobile */
+@media screen and (max-width: 1200px) and (min-width: 769px) {
+  #navdiv {
+    width: 40vw; /* Reduce nav width to prevent overlay */
+  }
+  
+  #imagediv {
+    margin-left: 45vw;
+    width: 55vw;
+  }
+  
+  #colldiv {
+    min-width: 150px; /* Start reducing colldiv width */
+  }
+  #logo {
+    width: 80px;
+  } 
+}
+
+@media screen and (max-width: 1000px) and (min-width: 769px) {
+  #navdiv {
+    width: 35vw; /* Further reduce nav width */
+  }
+  
+  #imagediv {
+    margin-left: 40vw;
+    width: 60vw;
+  }
+  
+  #colldiv {
+    min-width: 120px; /* Further reduce colldiv width */
+  }
+}
+
+@media screen and (max-width: 900px) and (min-width: 769px) {
+  #navdiv {
+    width: 30vw; /* Even smaller nav width */
+  }
+  
+  #imagediv {
+    margin-left: 35vw;
+    width: 65vw;
+  }
+  
+  #colldiv {
+    min-width: 100px; /* Even narrower colldiv */
+  }
+  
+  /* Make navigation text smaller to fit better */
+  #colldiv p, #typediv p, #photodiv p {
+    font-size: 9pt;
+  }
+  
+  #logo {
+    width: 80px;
+  }
+  
+  #logo:hover {
+    width: 90px;
+  }
+}
 
 @media screen and (max-width: 768px) {
   
@@ -412,6 +482,7 @@ a:hover,
     flex: 0 0 auto;
     padding: 10px;
     text-align: left;
+    justify-content: left;
   }
 
   #logodiv.centered {
@@ -421,7 +492,7 @@ a:hover,
   }
 
   #logo {
-    width: 80px;
+    width: 50px;
     height: auto;
   }
 
@@ -429,14 +500,14 @@ a:hover,
     width: 85px;
   }
 
-  /* Navigation items in a row - squish together instead of wrapping */
+  /* Navigation items stay vertical but squish together */
   #colldiv, #typediv, #photodiv {
     visibility: visible;
     padding: 5px;
     flex: 1;
     display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
+    flex-direction: column; /* Keep vertical stacking */
+    gap: 3px; /* Tight spacing between items */
     align-items: flex-start;
     min-width: 0; /* Allow shrinking */
   }
@@ -445,7 +516,7 @@ a:hover,
     margin: 0;
     white-space: nowrap;
     font-size: 9pt;
-    flex-shrink: 1; /* Allow text to get smaller if needed */
+    line-height: 1.1; /* Tighter line spacing */
   }
 
   /* Image div becomes second row with horizontal scroll */
@@ -494,7 +565,6 @@ a:hover,
     background: yellow;
   }
 
-  /* Description becomes third row */
   #descriptiondiv {
     width: 100vw;
     height: auto;
@@ -505,6 +575,8 @@ a:hover,
     flex: 1; /* Allow it to grow as needed */
     justify-content: flex-start;
     border-top: 1px solid #ccc;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
   }
 
   #descriptiondiv.align-top {
@@ -514,6 +586,10 @@ a:hover,
   #descp {
     font-size: 9pt;
     line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 90%;
+    box-sizing: border-box;
   }
 
   /* Product cards for mobile */
@@ -601,13 +677,13 @@ a:hover,
 
   #colldiv, #typediv, #photodiv {
     padding: 3px;
-    gap: 5px;
+    gap: 2px; /* Even tighter spacing on small screens */
     min-width: 0;
   }
 
   #colldiv p, #typediv p, #photodiv p {
     font-size: 8pt;
-    flex-shrink: 1;
+    line-height: 1.0;
   }
 
   #imagediv {
@@ -629,6 +705,10 @@ a:hover,
 
   #descp {
     font-size: 8pt;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   #logo {
