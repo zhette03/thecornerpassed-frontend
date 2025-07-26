@@ -540,7 +540,7 @@ body, html {
   }
 
   #logo {
-    width: 20px;
+    width: 30px;
     height: auto;
   }
 
@@ -763,10 +763,10 @@ body, html {
   }
 
   #logo {
-    width: 20px;
+    width: 30px;
   }
 
   #logo:hover {
-    width: 30px;
+    width: 40px;
   }
 }
