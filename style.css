@@ -380,8 +380,57 @@ a:hover,
   text-decoration: none !important;
 }
 
+#navdiv {
+  transition: width 0.3s ease;
+}
 
+#imagediv {
+  transition: margin-left 0.3s ease, width 0.3s ease, height 0.3s ease, flex-direction 0.3s ease;
+}
 
+#colldiv {
+  transition: min-width 0.3s ease, padding 0.3s ease, gap 0.3s ease;
+}
+
+#typediv {
+  transition: padding 0.3s ease, gap 0.3s ease;
+}
+
+#photodiv {
+  transition: padding 0.3s ease, gap 0.3s ease;
+}
+
+#colldiv p, #typediv p, #photodiv p {
+  transition: font-size 0.3s ease, line-height 0.3s ease;
+}
+
+#logo {
+  transition: width 0.3s ease;
+}
+
+#maindiv {
+  transition: border-width 0.3s ease, flex-direction 0.3s ease;
+}
+
+#topnav {
+  transition: padding 0.3s ease, justify-content 0.3s ease;
+}
+
+#logodiv {
+  transition: padding 0.3s ease, text-align 0.3s ease;
+}
+
+#descriptiondiv {
+  transition: padding 0.3s ease, min-height 0.3s ease, max-height 0.3s ease, overflow 0.3s ease;
+}
+
+#descp {
+  transition: font-size 0.3s ease, max-width 0.3s ease;
+}
+
+body, html {
+  transition: padding-left 0.3s ease, font-size 0.3s ease;
+}
 
 /* Mobile Responsive Styles - Add these to your existing CSS */
 
