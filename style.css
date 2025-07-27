@@ -503,7 +503,6 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 100vh;
-   
   }
 
   /* Navigation becomes first row */
@@ -523,8 +522,8 @@ body, html {
     justify-content: flex-start;
   }
 
-  /* Logo positioning for mobile */
-  #logodiv {
+  /* Logo positioning for mobile - FIXED: Only apply when NOT centered */
+  #logodiv:not(.centered) {
     position: static;
     transform: none;
     flex: 0 0 auto;
@@ -533,64 +532,95 @@ body, html {
     justify-content: left;
   }
 
+  /* IMPORTANT: Preserve centered state on mobile */
   #logodiv.centered {
-    position: static;
-    transform: none;
-    z-index: auto;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000 !important;
+    /* Override mobile styles when centered */
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    text-align: center !important;
   }
 
   #logo {
     width: 30px;
-    height: auto;
   }
 
   #logo:hover {
     width: 35px;
   }
 
-  /* Navigation items stay vertical but squish together */
+  /* CRITICAL FIX: Navigation items should REMAIN HIDDEN initially on mobile 
+     The JavaScript will make them visible after logo click */
   #colldiv, #typediv, #photodiv {
-    visibility: visible;
+    /* DO NOT set visibility: visible here - let JS control it */
     padding: 5px;
     flex: 1;
     display: flex;
-    flex-direction: column; /* Keep vertical stacking */
-    gap: 3px; /* Tight spacing between items */
+    flex-direction: column;
+    gap: 3px;
     align-items: flex-start;
-    min-width: 0; /* Allow shrinking */
+    min-width: 0;
+  }
+
+  /* ONLY apply mobile styling when these elements are actually visible */
+  #colldiv[style*="visibility: visible"], 
+  #typediv[style*="visibility: visible"], 
+  #photodiv[style*="visibility: visible"] {
+    /* Mobile-specific styling only when visible */
   }
 
   #colldiv p, #typediv p, #photodiv p {
     margin: 0;
-    white-space: nowrap;
+    white-space: normal;
     font-size: 9pt;
-    line-height: 1.1; /* Tighter line spacing */
+    line-height: 1.1;
   }
 
-  /* Image div becomes second row with horizontal scroll */
+  /* Image div - should also remain hidden initially */
   #imagediv {
     margin-left: 0;
     width: 100vw;
-    height: 50vh; /* Takes up half the remaining space */
+    height: 50vh;
     flex: 1;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 15px;
     display: flex;
-    flex-direction: row; /* Horizontal layout */
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: flex-end;
     gap: 15px;
-    visibility: visible;
+    /* DO NOT set visibility: visible - let JS control it */
+  }
+
+  /* Description div - should also remain hidden initially */
+  #descriptiondiv {
+    width: 92.5vw;
+    height: auto;
+    min-height: 2vh;
+    max-height: none;
+    padding: 15px;
+    /* DO NOT set visibility: visible - let JS control it */
+    flex: 1;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
 
   /* Images in horizontal scroll */
   #imagediv img {
     max-width: none;
     width: auto;
-    height: calc(50vh - 60px); /* Fit within container height */
+    height: calc(50vh - 60px);
     margin-bottom: 0;
     margin-right: 15px;
-    flex-shrink: 0; /* Prevent images from shrinking */
+    flex-shrink: 0;
   }
 
   /* Custom horizontal scrollbar for images */
@@ -611,21 +641,6 @@ body, html {
 
   #imagediv::-webkit-scrollbar-thumb:hover {
     background: yellow;
-  }
-
-  #descriptiondiv {
-    width: 100vw;
-    height: auto;
-    min-height: 20vh; /* Minimum height to ensure content fits */
-    max-height: none; /* Remove height restriction to prevent overflow */
-    padding: 15px;
-    visibility: visible;
-    flex: 1; /* Allow it to grow as needed */
-    justify-content: flex-start;
-    box-sizing: border-box;
-    overflow-x: hidden; /* Prevent horizontal overflow */
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
   }
 
   #descriptiondiv.align-top {
@@ -690,14 +705,13 @@ body, html {
     font-size: 9pt;
   }
 
-  /* Hide some elements that might not be needed on mobile */
-  .nav-hidden #colldiv,
+  /* REMOVE this override - let JS control visibility */
+  /* .nav-hidden #colldiv,
   .nav-hidden #typediv,
   .nav-hidden #photodiv {
-    visibility: visible; /* Override for mobile */
-  }
+    visibility: visible;
+  } */
 }
-
 /* Tablet and smaller desktop adjustments */
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   #maindiv {
