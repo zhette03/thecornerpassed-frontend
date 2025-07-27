@@ -592,7 +592,7 @@ body, html {
     padding: 15px;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 15px;
     /* DO NOT set visibility: visible - let JS control it */
   }
@@ -759,14 +759,20 @@ body, html {
   }
 
   #descriptiondiv {
-    padding: 10px;
-    min-height: 10vh;
-    max-height: 25vh;
-    flex: 1;
-    overflow: scroll;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  }
+  width: 92vw;
+  max-height: 25vh; /* 👈 restores max height */
+  min-height: 10vh;
+  padding: 15px;
+  flex: 1;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  overflow-y: auto; /* 👈 restores vertical scrolling */
+  overflow-x: hidden;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+  
 
   #descp {
     font-size: 8pt;
@@ -784,3 +790,39 @@ body, html {
     width: 40px;
   }
 }
+/* Hide new mobile logo row by default */
+#mobilelogo {
+  display: none;
+}
+
+/* Mobile layout: show mobile logo row, center the logo */
+@media screen and (max-width: 768px) {
+  #mobilelogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  #logodiv-mobile {
+    text-align: center;
+  }
+
+  #logo-mobile {
+    width: 50px;
+    transition: width 0.3s ease;
+    cursor: url('CURSORTCPB.png'), auto;
+  }
+
+  #logo-mobile:hover {
+    width: 35px;
+    cursor: url('CURSORTCPYELLO.png'), auto;
+  }
+
+  /* Hide original #logodiv only on mobile if not centered */
+  #topnav #logodiv:not(.centered) {
+    display: none;
+  }
+}
+
