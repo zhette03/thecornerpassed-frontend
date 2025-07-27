@@ -217,24 +217,81 @@ modalNextArrow.addEventListener('click', e => {
     return name;
   }
 
-  let logoClicked = false;
-  logodiv.addEventListener('click', async () => {
-    if (logoClicked) return;
+  if (!logoClicked) {
     logoClicked = true;
-    logodiv.style.visibility='hidden';
+    logodiv.style.visibility = 'hidden';
     await Tone.start();
     const volume = new Tone.Volume(-60).toDestination();
-    const synth  = new Tone.Synth({ oscillator:{type:"sine"}, envelope:{attack:0.5,decay:0.1,sustain:0.8,release:0.1} }).connect(volume);
-    volume.volume.linearRampToValueAtTime(1, Tone.now()+2);
-    synth.triggerAttackRelease("E4",2);
-    Tone.Transport.scheduleOnce(()=>synth.triggerAttackRelease("C5",0.1),"+2");
+    const synth = new Tone.Synth({ 
+      oscillator: { type: "sine" }, 
+      envelope: { attack: 0.5, decay: 0.1, sustain: 0.8, release: 0.1 } 
+    }).connect(volume);
+    volume.volume.linearRampToValueAtTime(1, Tone.now() + 2);
+    synth.triggerAttackRelease("E4", 2);
+    Tone.Transport.scheduleOnce(() => synth.triggerAttackRelease("C5", 0.1), "+2");
     Tone.Transport.start();
-    setTimeout(()=>{
+    setTimeout(() => {
       logodiv.classList.remove('centered');
-      logodiv.style.visibility='visible';
-      colldiv.style.visibility='visible';
-    },2000);
-  });
+      logodiv.style.visibility = 'visible';
+      colldiv.style.visibility = 'visible';
+    }, 2000);
+  } 
+  
+  // Subsequent clicks (navigation reset)
+  else {
+    // Play a quick sound for feedback
+    playRandomHoverSynth();
+    
+    // Reset navigation to initial state (only colldiv visible)
+    resetToInitialNavigation();
+  }
+});
+
+// Add this new function to reset navigation
+function resetToInitialNavigation() {
+  // Hide all secondary navigation elements
+  typediv.style.visibility = 'hidden';
+  photodiv.style.visibility = 'hidden';
+  imagediv.style.visibility = 'hidden';
+  descriptiondiv.style.visibility = 'hidden';
+  
+  // Clear content from secondary divs
+  typediv.innerHTML = '';
+  photodiv.innerHTML = '';
+  imagediv.innerHTML = '';
+  
+  // Reset description structure
+  if (!document.getElementById('descp')) {
+    descriptiondiv.innerHTML = '<p id="descp"></p>';
+  } else {
+    document.getElementById('descp').innerHTML = '';
+  }
+  
+  // Reset description div styling
+  descriptiondiv.style.alignItems = 'flex-end';
+  descriptiondiv.style.justifyContent = 'flex-end';
+  document.getElementById('descp').style.marginTop = '0';
+  
+  // Reset current state variables
+  currentCollection = "";
+  currentImages = [];
+  modalImageIndex = 0;
+  currentType = "";
+  
+  // Ensure colldiv stays visible
+  colldiv.style.visibility = 'visible';
+  
+  // Close any open modals or cart
+  if (modal.style.display === 'block') {
+    closeModal();
+  }
+  
+  // Close cart drawer if open
+  if (cartDrawer.style.right === '0px' || cartDrawer.style.right === '0') {
+    closeCartDrawer();
+  }
+}
+
 
   function resetLayout() {
     typediv.style.visibility = '';
