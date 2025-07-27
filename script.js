@@ -1,4 +1,3 @@
-
 window.onload = function () {
   // ---- Element references ----
   const logodiv = document.getElementById('logodiv');
@@ -217,6 +216,10 @@ modalNextArrow.addEventListener('click', e => {
     return name;
   }
 
+  let logoClicked = false;
+logodiv.addEventListener('click', async () => {
+  
+  // First time clicking (landing sequence)
   if (!logoClicked) {
     logoClicked = true;
     logodiv.style.visibility = 'hidden';
@@ -291,7 +294,6 @@ function resetToInitialNavigation() {
     closeCartDrawer();
   }
 }
-
 
   function resetLayout() {
     typediv.style.visibility = '';
