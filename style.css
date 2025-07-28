@@ -920,7 +920,7 @@ mix-blend-mode: color-dodge;
   }
 
   #logo {
-    width: 30px;
+    width: 60px;
   }
 
   #logo:hover {
@@ -947,7 +947,7 @@ mix-blend-mode: color-dodge;
   }
 
   #logo-mobile {
-    width: 80px;
+    width: 50px;
     transition: width 0.3s ease;
     cursor: url('CURSORTCPB.png'), auto;
   }
