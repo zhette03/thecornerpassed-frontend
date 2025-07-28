@@ -1,4 +1,4 @@
-body, html {
+ body, html {
   margin: 0;
   padding: 0;
   padding-left: 20px;
@@ -375,6 +375,11 @@ a:hover,
   cursor: url("CURSORTCPYELLO.png"), auto !important;
 }
 
+#mobilelogo {
+  display: none;
+  visibility: hidden; /* Add this to ensure it's fully hidden initially */
+}
+
 /* turn off hover‑overlines inside the product description */
 #descriptiondiv p:hover {
   text-decoration: none !important;
@@ -594,6 +599,39 @@ body, html {
     word-break: break-word !important;
     max-width: 100%;
   }
+
+  #mobilelogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    visibility: hidden; /* Keep hidden until after landing sequence */
+  }
+
+  #mobilelogo.show {
+    visibility: visible; /* Only show when .show class is added */
+  }
+
+  #logodiv-mobile {
+    text-align: center;
+  }
+
+  #logo-mobile {
+    width: 50px;
+    transition: width 0.3s ease;
+    cursor: url('CURSORTCPB.png'), auto;
+  }
+
+  #logo-mobile:hover {
+    width: 55px; /* Fixed hover size */
+    cursor: url('CURSORTCPYELLO.png'), auto;
+  }
+
+  /* Hide original #logodiv only on mobile if not centered */
+  #topnav #logodiv:not(.centered) {
+    display: none;
+  }
   
 
   /* Image div - MODIFIED to use flexible height */
@@ -619,7 +657,7 @@ body, html {
     width: 92.5vw;
     /* CHANGED: Use flexible height instead of fixed height */
     min-height: 15vh; /* Minimum height */
-    max-height: 35vh; /* Maximum height when content is long */
+    max-height: 25vh; /* Maximum height when content is long */
     padding: 15px;
     /* DO NOT set visibility: visible - let JS control it */
     flex: 1; /* Takes remaining space */
@@ -639,7 +677,8 @@ body, html {
     height: calc(100% - 30px); /* Subtract padding */
     min-height: 200px; /* Minimum image height */
     max-height: calc(60vh - 60px); /* Maximum based on container max-height */
-    margin-bottom: 0;
+    margin-bottom: 80px; /* Extra space at bottom of image gallery */
+    padding-bottom: 20px; /* Additional padding */
     margin-right: 7px;
     flex-shrink: 0;
     object-fit: contain; /* Maintain aspect ratio */
@@ -687,22 +726,66 @@ body, html {
     height: auto; /* Let cards size naturally */
   }
 
-  /* Modal adjustments for mobile */
-  .modal-content img {
-    max-width: 95vw;
-    max-height: 80vh;
+  .modal-tap-left,
+  .modal-tap-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50vw;
+    z-index: 1002; /* Higher than arrows */
+    cursor: url('CURSORTCPYELLO.png'), auto;
+    display: none; /* Hidden by default, shown when modal is open */
   }
 
-  .modal-prev-arrow {
-    left: 10px;
+  .modal-tap-left {
+    left: 0;
   }
 
-  .modal-next-arrow {
-    right: 10px;
+  .modal-tap-right {
+    right: 0;
   }
 
+  /* Hide the small arrow buttons on mobile since we have full-screen taps */
   .custom-arrow {
-    width: 20px !important;
+    display: none !important;
+  }
+
+  /* Optional: Add subtle visual indicators */
+  .modal-tap-left::after,
+  .modal-tap-right::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .modal-tap-left::after {
+    left: 20px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .modal-tap-right::after {
+    right: 20px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Show indicators on tap/touch */
+  .modal-tap-left:active::after,
+  .modal-tap-right:active::after {
+    opacity: 1;
   }
 
   .close {
