@@ -229,6 +229,85 @@ mobileTapRight.addEventListener('click', (e) => {
   showModalImage(modalImageIndex + 1);
 });
 
+let startY = 0;
+let currentY = 0;
+let isDragging = false;
+
+modal.addEventListener('touchstart', (e) => {
+  startY = e.touches[0].clientY;
+  isDragging = true;
+}, { passive: true });
+
+modal.addEventListener('touchmove', (e) => {
+  if (!isDragging) return;
+  currentY = e.touches[0].clientY;
+  
+  // If swiping down significantly, add visual feedback
+  const deltaY = currentY - startY;
+  if (deltaY > 50) {
+    modal.style.opacity = Math.max(0.3, 1 - (deltaY / 200));
+  }
+}, { passive: true });
+
+modal.addEventListener('touchend', (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  
+  const deltaY = currentY - startY;
+  
+  // If swiped down more than 100px, close modal
+  if (deltaY > 100) {
+    closeModal();
+  } else {
+    // Reset opacity if didn't close
+    modal.style.opacity = 1;
+  }
+}, { passive: true });
+
+// Double tap to close (alternative method)
+let lastTapTime = 0;
+modal.addEventListener('touchend', (e) => {
+  // Only if tapping on the modal background (not image or controls)
+  if (e.target === modal) {
+    const currentTime = new Date().getTime();
+    const timeDiff = currentTime - lastTapTime;
+    
+    if (timeDiff < 300 && timeDiff > 0) {
+      // Double tap detected
+      closeModal();
+    }
+    lastTapTime = currentTime;
+  }
+});
+
+// Make sure the close button is always visible and clickable
+function showModalImage(index) {
+  if (!currentImages.length) return;
+  modalImageIndex = (index + currentImages.length) % currentImages.length;
+  modal.style.display = 'block';
+  modal.style.opacity = 1; // Reset opacity
+  modalImg.src = currentImages[modalImageIndex];
+  
+  // Desktop arrows
+  modalPrevArrow.style.display = currentImages.length > 1 ? 'block' : 'none';
+  modalNextArrow.style.display = currentImages.length > 1 ? 'block' : 'none';
+  
+  // Mobile tap zones - only show if there are multiple images
+  if (window.innerWidth <= 768 && currentImages.length > 1) {
+    mobileTapLeft.style.display = 'block';
+    mobileTapRight.style.display = 'block';
+  } else {
+    mobileTapLeft.style.display = 'none';
+    mobileTapRight.style.display = 'none';
+  }
+  
+  // Ensure close button is always visible on mobile
+  if (window.innerWidth <= 768) {
+    closeBtn.style.visibility = 'visible';
+    closeBtn.style.display = 'flex';
+  }
+}
+
 // Update your showModalImage function to show/hide tap zones on mobile
 function showModalImage(index) {
   if (!currentImages.length) return;
@@ -307,7 +386,7 @@ logodiv.addEventListener('click', async () => {
       if (window.innerWidth <= 768) {
         const mobileLogoDiv = document.getElementById('mobilelogo');
         if (mobileLogoDiv) {
-          mobileLogoDiv.classList.add('show');
+          mobileLogoDiv.classList.add('show');f
         }
       }
     }, 2000);
