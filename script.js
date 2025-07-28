@@ -11,6 +11,7 @@ window.onload = function () {
   const closeBtn = document.getElementsByClassName('close')[0];
   const modalPrevArrow = document.getElementById('modalPrevArrow');
   const modalNextArrow = document.getElementById('modalNextArrow');
+  
 
   // ---- Cart drawer setup ----
   const cart = [];
@@ -31,6 +32,7 @@ cartDrawer.style.paddingBottom = '80px';    // or whatever extra space you need
   cartDrawer.style.zIndex = '999';
   document.body.appendChild(cartDrawer);
 
+  
   
   // ---- Hover‑sound synth setup ----
   const synths = [
@@ -202,6 +204,66 @@ modalNextArrow.addEventListener('click', e => {
   closeBtn.onclick = closeModal;
   modal.onclick = e => { if(e.target===modal) closeModal(); };
 
+  // Add this to your JavaScript file after your existing modal setup
+
+// Create mobile tap zones
+const mobileTapLeft = document.createElement('div');
+mobileTapLeft.className = 'modal-tap-left';
+const mobileTapRight = document.createElement('div');
+mobileTapRight.className = 'modal-tap-right';
+
+// Add them to the modal
+modal.appendChild(mobileTapLeft);
+modal.appendChild(mobileTapRight);
+
+// Add event listeners for tap navigation
+mobileTapLeft.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent modal from closing
+  playRandomHoverSynth();
+  showModalImage(modalImageIndex - 1);
+});
+
+mobileTapRight.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent modal from closing
+  playRandomHoverSynth();
+  showModalImage(modalImageIndex + 1);
+});
+
+// Update your showModalImage function to show/hide tap zones on mobile
+function showModalImage(index) {
+  if (!currentImages.length) return;
+  modalImageIndex = (index + currentImages.length) % currentImages.length;
+  modal.style.display = 'block';
+  modalImg.src = currentImages[modalImageIndex];
+  
+  // Desktop arrows
+  modalPrevArrow.style.display = currentImages.length > 1 ? 'block' : 'none';
+  modalNextArrow.style.display = currentImages.length > 1 ? 'block' : 'none';
+  
+  // Mobile tap zones - only show if there are multiple images
+  if (window.innerWidth <= 768 && currentImages.length > 1) {
+    mobileTapLeft.style.display = 'block';
+    mobileTapRight.style.display = 'block';
+  } else {
+    mobileTapLeft.style.display = 'none';
+    mobileTapRight.style.display = 'none';
+  }
+}
+
+// Update closeModal to hide tap zones
+function closeModal() {
+  modal.style.display = 'none';
+  modalPrevArrow.style.display = modalNextArrow.style.display = 'none';
+  mobileTapLeft.style.display = mobileTapRight.style.display = 'none';
+}
+
+// Handle window resize to show/hide appropriate navigation
+window.addEventListener('resize', () => {
+  if (modal.style.display === 'block') {
+    showModalImage(modalImageIndex); // Re-evaluate which navigation to show
+  }
+});
+
   function hideDescription() {
     descriptiondiv.style.visibility='hidden';
     descriptiondiv.style.alignItems='flex-end';
@@ -217,29 +279,39 @@ modalNextArrow.addEventListener('click', e => {
   }
 
   let logoClicked = false;
+// Add this to your existing logodiv click handler
+// Replace your existing logodiv.addEventListener('click', ...) with this:
+
 logodiv.addEventListener('click', async () => {
-  
   // First time clicking (landing sequence)
   if (!logoClicked) {
     logoClicked = true;
     logodiv.style.visibility = 'hidden';
     await Tone.start();
     const volume = new Tone.Volume(-60).toDestination();
-    const synth = new Tone.Synth({ 
-      oscillator: { type: "sine" }, 
-      envelope: { attack: 0.5, decay: 0.1, sustain: 0.8, release: 0.1 } 
+    const synth = new Tone.Synth({
+      oscillator: { type: "sine" },
+      envelope: { attack: 0.5, decay: 0.1, sustain: 0.8, release: 0.1 }
     }).connect(volume);
     volume.volume.linearRampToValueAtTime(1, Tone.now() + 2);
     synth.triggerAttackRelease("E4", 2);
     Tone.Transport.scheduleOnce(() => synth.triggerAttackRelease("C5", 0.1), "+2");
     Tone.Transport.start();
+    
     setTimeout(() => {
       logodiv.classList.remove('centered');
       logodiv.style.visibility = 'visible';
       colldiv.style.visibility = 'visible';
+      
+      // Show mobile logo if on mobile
+      if (window.innerWidth <= 768) {
+        const mobileLogoDiv = document.getElementById('mobilelogo');
+        if (mobileLogoDiv) {
+          mobileLogoDiv.classList.add('show');
+        }
+      }
     }, 2000);
-  } 
-  
+  }
   // Subsequent clicks (navigation reset)
   else {
     // Play a quick sound for feedback
@@ -249,6 +321,17 @@ logodiv.addEventListener('click', async () => {
     resetToInitialNavigation();
   }
 });
+
+// Also add click functionality to the mobile logo
+const mobileLogoElement = document.getElementById('logo-mobile');
+if (mobileLogoElement) {
+  mobileLogoElement.addEventListener('click', () => {
+    if (logoClicked) {
+      playRandomHoverSynth();
+      resetToInitialNavigation();
+    }
+  });
+}
 
 // Add this new function to reset navigation
 function resetToInitialNavigation() {
