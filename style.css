@@ -799,7 +799,7 @@ body, html {
 width: 100vw;
     cursor: url('CURSORTCPYELLO.png'), auto;
     z-index: 1003; /* Higher than tap zones */
-  opacity: 0.5;
+  opacity: 0;
 mix-blend-mode: color-dodge;
     height: 50px;
     display: flex;
@@ -815,7 +815,7 @@ mix-blend-mode: color-dodge;
     border-color: #f1f1f1;
     transform: scale(1.1); /* Slight scale on interaction */
     transition: all 0.2s ease;
-    opacity: 0.5;
+    opacity: 0;
     mix-blend-mode: multiply;
   }
 
@@ -828,7 +828,7 @@ mix-blend-mode: color-dodge;
   /* For devices that don't support backdrop-filter, use darker background */
   @supports not (backdrop-filter: blur(5px)) {
     .modal {
-      background: rgba(0, 0, 0, 0.6); /* Darker fallback */
+      background: blur(5px);
     }
   }
 
