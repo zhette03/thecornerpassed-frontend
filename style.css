@@ -791,12 +791,9 @@ body, html {
 
   /* Mobile close button - make it more visible and accessible */
   .close {
-    visibility: visible !important; /* Override the hidden visibility */
+    visibility: hidden !important; /* Override the hidden visibility */
     position: fixed; /* Changed to fixed for better positioning */
-    color: white;
-    background-color: white;
     font-size: 30px; /* Slightly smaller for better fit */
-width: 100vw;
     cursor: url('CURSORTCPYELLO.png'), auto;
     z-index: 1003; /* Higher than tap zones */
   opacity: 0;
@@ -806,17 +803,6 @@ mix-blend-mode: color-dodge;
     align-items: center;
     justify-content: center;
     line-height: 1;
-  }
-
-  .close:hover,
-  .close:active,
-  .close:focus {
-    color: #f1f1f1;
-    border-color: #f1f1f1;
-    transform: scale(1.1); /* Slight scale on interaction */
-    transition: all 0.2s ease;
-    opacity: 0;
-    mix-blend-mode: multiply;
   }
 
   /* Fix backdrop blur for mobile - use fallback for unsupported devices */
