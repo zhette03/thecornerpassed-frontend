@@ -947,7 +947,7 @@ mix-blend-mode: color-dodge;
   }
 
   #logo-mobile {
-    width: 50px;
+    width: 80px;
     transition: width 0.3s ease;
     cursor: url('CURSORTCPB.png'), auto;
   }
