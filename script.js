@@ -92,7 +92,7 @@ document.addEventListener('mouseover', e => {
     SS25: { types: ["Lookbook","Editorial"], Lookbook: ["Louis F. Cota"], Editorial: ["Chema Torres","Louis F. Cota*","Octavio Cruz"] },
     FW24: { types: ["Lookbook","Editorial"], Lookbook: ["Louis F. Cota**"], Editorial: ["Alberto Valle-Gutierrez","Hernan Esquinca","Ocean Adamovich Ortiz","Louis F. Cota***"] },
     SNET: { types: ["Exhibition","Film","Images"] },
-    Press: { types: ["Office","dna","Paper"], Office: ["From LDN to NYC: Intimate Portraits of City Youth"], dna: ["Spectral Bonds"], Paper: ["Oklou Comes Back to Earth"] },
+    Press: { types: ["Office","dna","Paper, Totem"], Office: ["From LDN to NYC: Intimate Portraits of City Youth"], dna: ["Spectral Bonds"], Paper: ["Oklou Comes Back to Earth"], Totem:["JUDELINE: SPIRITUAL POP FROM THE SOUTH, WHERE THE ANCESTORS AND THE ALGORITHM COLLIDE"] },
     Stockist: { types: ["WiG","Retail Pharmacy","APOC Store"] },
     Info: { types: ["About","Contact"] }
   };
@@ -114,6 +114,7 @@ document.addEventListener('mouseover', e => {
     "From LDN to NYC: Intimate Portraits of City Youth": '<a href="https://officemagazine.net/ldn-nyc-intimate-portraits-city-youth" target="_blank">https://officemagazine.net/ldn-nyc-intimate-portraits-city-youth</a>',
     "Spectral Bonds": '<a href="https://dnamag.mx/spectral-bonds/" target="_blank">https://dnamag.mx/spectral-bonds/</a>',
     "Oklou Comes Back to Earth":'<a href="https://www.papermag.com/oklou-choke-enough-album#rebelltitem2" target="_blank">https://www.papermag.com/oklou-choke-enough-album#rebelltitem2</a>',
+    "JUDELINE: SPIRITUAL POP FROM THE SOUTH, WHERE THE ANCESTORS AND THE ALGORITHM COLLIDE": '<a href="http://www.totemmag.com/judeline-spiritual-pop-from-the-south-where-the-ancestors-and-the-algorithm-collide/" target="_blank">http://www.totemmag.com/judeline-spiritual-pop-from-the-south-where-the-ancestors-and-the-algorithm-collide/</a>',
     "About": "Prospection according to space.<br><br> A project by Jordan Perdomo.",
     "Contact": "thecornerpassed@gmail.com<br><br>@_tcp_tcp_", 
     "WiG": "Barcelona 8, Juarez, CDMX, Mexico.<br><br>https://www.instagram.com/____wig____/<br>www.wig.mx",
@@ -137,6 +138,7 @@ document.addEventListener('mouseover', e => {
     "From LDN to NYC: Intimate Portraits of City Youth": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739613/alex_josie_4_tcufkt.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739613/iris_parker_3_c2tx9c.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739613/alex_josie_2_qblvqf.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739612/iris_parker_2_tgo084.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739610/alex_josie_3_uvm78d.jpg"],
     "Spectral Bonds": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1751741566/Copy_of_Untitled_Capture15752_q4msrm.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751741565/Copy_of_Untitled_Capture15677_wypvha.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751741565/Copy_of_Untitled_Capture15816_ewdtyn.jpg"],
     "Oklou Comes Back to Earth": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739715/img.jpg_dmtz6l.webp","https://res.cloudinary.com/djdu9iqeu/image/upload/v1751739715/img.jpg-2_h4ezw4.webp"],
+    "JUDELINE: SPIRITUAL POP FROM THE SOUTH, WHERE THE ANCESTORS AND THE ALGORITHM COLLIDE": ["https://res.cloudinary.com/djdu9iqeu/image/upload/v1754067052/judelinecover_-scaled_ktb2lf.png","https://res.cloudinary.com/djdu9iqeu/image/upload/v1754067051/051425_judeline_0992-copy-scaled_yrpaem.jpg","https://res.cloudinary.com/djdu9iqeu/image/upload/v1754067076/judddd_n86hyj.jpg"],
   };
     const longDescKeys = ['GG Kim','Louis F. Cota','Louis F. Cota**'];
 
