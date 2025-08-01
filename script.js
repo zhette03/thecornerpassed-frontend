@@ -92,7 +92,7 @@ document.addEventListener('mouseover', e => {
     SS25: { types: ["Lookbook","Editorial"], Lookbook: ["Louis F. Cota"], Editorial: ["Chema Torres","Louis F. Cota*","Octavio Cruz"] },
     FW24: { types: ["Lookbook","Editorial"], Lookbook: ["Louis F. Cota**"], Editorial: ["Alberto Valle-Gutierrez","Hernan Esquinca","Ocean Adamovich Ortiz","Louis F. Cota***"] },
     SNET: { types: ["Exhibition","Film","Images"] },
-    Press: { types: ["Office","dna","Paper, Totem"], Office: ["From LDN to NYC: Intimate Portraits of City Youth"], dna: ["Spectral Bonds"], Paper: ["Oklou Comes Back to Earth"], Totem:["JUDELINE: SPIRITUAL POP FROM THE SOUTH, WHERE THE ANCESTORS AND THE ALGORITHM COLLIDE"] },
+    Press: { types: ["Office","dna","Paper", "Totem"], Office: ["From LDN to NYC: Intimate Portraits of City Youth"], dna: ["Spectral Bonds"], Paper: ["Oklou Comes Back to Earth"], Totem:["JUDELINE: SPIRITUAL POP FROM THE SOUTH, WHERE THE ANCESTORS AND THE ALGORITHM COLLIDE"] },
     Stockist: { types: ["WiG","Retail Pharmacy","APOC Store"] },
     Info: { types: ["About","Contact"] }
   };
