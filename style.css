@@ -12,7 +12,14 @@ body, html {
 #imagediv::-webkit-scrollbar {
   width: 6px;
 }
+a {
+  color:black;
+  text-decoration: none;
+}
 
+a:visited {
+  color:black;
+}
 #imagediv::-webkit-scrollbar-track {
   background: white
 }
