@@ -290,7 +290,6 @@ async function submitRSVP(name, time) {
     try {
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -300,16 +299,10 @@ async function submitRSVP(name, time) {
             })
         });
         
-        // With no-cors mode, we can't read the response
-        // So we'll refetch the counts to get the number
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        const getResponse = await fetch(SCRIPT_URL);
-        const data = await getResponse.json();
+        const data = await response.json();
         
         if (data.success) {
-            const rsvpNumber = String(data.counts[time]).padStart(3, '0');
-            return rsvpNumber;
+            return data.number;
         } else {
             throw new Error(data.message || 'Submission failed');
         }
