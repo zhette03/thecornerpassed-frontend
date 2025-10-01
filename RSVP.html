@@ -130,23 +130,24 @@ a {
                 19:30 <span class="slots-remaining"></span>
             </p>
         </div>
-        <div id="email">
-            <form id="rsvp-form">
-                <input type="text" id="email-input" placeholder="Enter your name" required>
-                <button type="submit" id="submit-btn">RSVP</button>
-                <p id="tos">To secure attendance, please take a screenshot of the site and email it to <a href="mailto:live.stock.ss26@gmail.com?subject=TCP%2C%20LIVE-STOCK%20RSVP%20CONFIRMATION%2C%20SS25">live.stock.ss26@gmail.com</a>, thank you.</p>
-            </form>
-            <div id="message"></div>
-        </div>
+       <div id="email">
+        <form id="rsvp-form">
+            <input type="text" id="name-input" placeholder="Enter your name" required>
+            <input type="email" id="email-input" placeholder="Enter your email" style="margin-top: 10px;">
+            <button type="submit" id="submit-btn">RSVP</button>
+            <p id="tos">To secure attendance, please take a screenshot of the site and email it to <a href="mailto:live.stock.ss26@gmail.com?subject=TCP%2C%20LIVE-STOCK%20RSVP%20CONFIRMATION%2C%20SS25">live.stock.ss26@gmail.com</a>, thank you.</p>
+        </form>
+        <div id="message"></div>
+</div>
     
         
     </div>
     
     <script>
 // RSVP Management System - Connected to Google Sheets
-// REPLACE THIS WITH YOUR WEB APP URL FROM GOOGLE APPS SCRIPT
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxdEzmGr85H0L4x9ayMsxwB2PeNo5LcUmb7vgEBP_VeslW7AJeAPlTb23sW7_qU7VCV/exec';
-
+// CHANGE THIS TO YOUR BACKEND URL
+const SCRIPT_URL = 'http://thecornerpassed-backend-production.up.railway.app/api/rsvp';
+// const SCRIPT_URL = 'https://your-backend.railway.app/api/rsvp';  // For production
 const MAX_SLOTS = 56;
 
 // Data storage (in memory, synced from Google Sheets)
@@ -169,14 +170,15 @@ const timesDiv = document.getElementById('times');
 const emailDiv = document.getElementById('email');
 const timeSlots = document.querySelectorAll('.time-slot');
 const rsvpForm = document.getElementById('rsvp-form');
-const emailInput = document.getElementById('email-input');
+const nameInput = document.getElementById('name-input'); // Changed from emailInput
+const emailInputField = document.getElementById('email-input'); // New email input
 const submitBtn = document.getElementById('submit-btn');
 const messageDiv = document.getElementById('message');
 
 // Initialize: Load current RSVP counts from Google Sheets
 async function initializeRSVPCounts() {
     try {
-        const response = await fetch(SCRIPT_URL);
+        const response = await fetch('http://thecornerpassed-backend-production.up.railway.app/api/rsvp/counts');
         const data = await response.json();
         
         if (data.success) {
@@ -247,8 +249,9 @@ rsvpForm.addEventListener('submit', async function(e) {
         return;
     }
     
-    const name = emailInput.value.trim();
-    
+    const name = nameInput.value.trim();
+    const email = emailInputField.value.trim(); 
+
     if (!name) {
         showMessage('Please enter a valid name.', 'error');
         return;
@@ -267,12 +270,13 @@ rsvpForm.addEventListener('submit', async function(e) {
     
     try {
         // Submit RSVP to Google Sheets
-        const rsvpNumber = await submitRSVP(name, selectedTime);
+        const rsvpNumber = await submitRSVP(name, selectedTime, email);
         
         // Show success message with big number
         showSuccessWithNumber(rsvpNumber, selectedTime, name);
         
         // Reset form
+        nameInput.value = '';
         emailInput.value = '';
         
         // Reload counts and update displays
@@ -286,7 +290,7 @@ rsvpForm.addEventListener('submit', async function(e) {
 });
 
 // Submit RSVP to Google Sheets backend
-async function submitRSVP(name, time) {
+async function submitRSVP(name, time, email) {
     try {
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
@@ -295,7 +299,8 @@ async function submitRSVP(name, time) {
             },
             body: JSON.stringify({
                 name: name,
-                time: time
+                time: time,
+                email: email
             })
         });
         
@@ -314,8 +319,18 @@ async function submitRSVP(name, time) {
 
 // Show success with big number display
 function showSuccessWithNumber(number, time, name) {
+    // Format number with leading zeros if it's not already formatted
+    const formattedNumber = typeof number === 'string' ? number : String(number).padStart(3, '0');
+    
+    // Remove any existing overlays first
+    const existingOverlay = document.querySelector('.rsvp-overlay');
+    if (existingOverlay) {
+        existingOverlay.remove();
+    }
+    
     // Create overlay
     const overlay = document.createElement('div');
+    overlay.classList.add('rsvp-overlay'); // Add class for easy selection
     overlay.style.position = 'fixed';
     overlay.style.top = '0';
     overlay.style.left = '0';
@@ -325,11 +340,12 @@ function showSuccessWithNumber(number, time, name) {
     overlay.style.flexDirection = 'column';
     overlay.style.justifyContent = 'center';
     overlay.style.alignItems = 'center';
-    overlay.style.zIndex = '-9999';
+    overlay.style.zIndex = '-1'; // Behind everything
+    overlay.style.pointerEvents = 'none'; // Don't block clicks
     
     // Create number display
     const numberDisplay = document.createElement('div');
-    numberDisplay.textContent = number;
+    numberDisplay.textContent = formattedNumber;
     numberDisplay.style.fontSize = '15vw';
     numberDisplay.style.marginBottom = '1px';
     
