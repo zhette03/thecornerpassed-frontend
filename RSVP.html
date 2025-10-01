@@ -146,7 +146,7 @@ a {
     <script>
 // RSVP Management System - Connected to Google Sheets
 // CHANGE THIS TO YOUR BACKEND URL
-const SCRIPT_URL = 'http://thecornerpassed-backend-production.up.railway.app/api/rsvp';
+const SCRIPT_URL = 'https://thecornerpassed-backend-production.up.railway.app/api/rsvp';
 // const SCRIPT_URL = 'https://your-backend.railway.app/api/rsvp';  // For production
 const MAX_SLOTS = 56;
 
@@ -178,7 +178,7 @@ const messageDiv = document.getElementById('message');
 // Initialize: Load current RSVP counts from Google Sheets
 async function initializeRSVPCounts() {
     try {
-        const response = await fetch('http://thecornerpassed-backend-production.up.railway.app/api/rsvp/counts');
+        const response = await fetch('https://thecornerpassed-backend-production.up.railway.app/api/rsvp/counts');
         const data = await response.json();
         
         if (data.success) {
@@ -277,7 +277,7 @@ rsvpForm.addEventListener('submit', async function(e) {
         
         // Reset form
         nameInput.value = '';
-        emailInput.value = '';
+        emailInputField.value = '';
         
         // Reload counts and update displays
         await initializeRSVPCounts();
