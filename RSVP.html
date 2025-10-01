@@ -170,7 +170,7 @@ const timesDiv = document.getElementById('times');
 const emailDiv = document.getElementById('email');
 const timeSlots = document.querySelectorAll('.time-slot');
 const rsvpForm = document.getElementById('rsvp-form');
-const nameInput = document.getElementById('name-input'); // Changed from emailInput
+const nameInput = document.getElementById('name-input');
 const emailInputField = document.getElementById('email-input'); // New email input
 const submitBtn = document.getElementById('submit-btn');
 const messageDiv = document.getElementById('message');
@@ -290,8 +290,12 @@ rsvpForm.addEventListener('submit', async function(e) {
 });
 
 // Submit RSVP to Google Sheets backend
+// Submit RSVP to Google Sheets backend
 async function submitRSVP(name, time, email) {
     try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
             headers: {
@@ -301,8 +305,11 @@ async function submitRSVP(name, time, email) {
                 name: name,
                 time: time,
                 email: email
-            })
+            }),
+            signal: controller.signal
         });
+        
+        clearTimeout(timeoutId);
         
         const data = await response.json();
         
@@ -313,6 +320,9 @@ async function submitRSVP(name, time, email) {
         }
         
     } catch (error) {
+        if (error.name === 'AbortError') {
+            throw new Error('Request timed out. Your RSVP may have been saved - please check before resubmitting.');
+        }
         throw new Error('Failed to submit RSVP: ' + error.message);
     }
 }
